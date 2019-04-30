@@ -1,0 +1,101 @@
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+</head>
+<body class="back">
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<div class="jumbotron" id="form">
+  <p style="color:goldenrod;font-size:15px">Sign in for the world of Q&A</p>
+
+  <form method="GET" action="/lgn">
+    <div class="marg">
+    <div class="form-group">
+    <center>  <label for="exampleInputEmail1">Email address</label></center>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" v-model="email" name="email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <center><label for="exampleInputPassword1">Password</label></center>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" class="wid" v-model="pass" name="pass">
+    </div>
+    <center><button type="submit" class="btn btn-primary">Submit</button></center>
+</div>
+  </form>
+    <a class="google-btn" href="/google">Google+</a>
+</div>
+
+<style>
+.jumbotron{
+  z-index: 1;
+  border-radius: 20%;
+  background-color:black;
+}
+.google-btn{
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    background: #ff5353;
+    border-radius: 10%;
+    z-index: 1;
+
+    margin-left: 130px;
+}
+.google-btn:hover{
+  color:white;
+  text-decoration:none;
+}
+.form-group{
+  width:400px;
+  margin-left:90px;
+}
+.wid{
+  width:100px;
+}
+.back
+{
+  background-image: url('img3.png');
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+.jumbotron{
+  margin-left: 400px;
+  margin-top: 100px;
+  margin-right:350px;
+}
+.marg{
+  margin-left: 30px;
+  margin-right: 30px;
+  color:goldenrod;
+}
+</style>
+<script>
+
+
+new Vue({
+  el:"#form",
+data:{
+email:"",
+pass:""
+},
+
+methods:{
+
+}
+
+});
+
+</script>
+
+
+</body>
+</html>

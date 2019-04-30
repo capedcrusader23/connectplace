@@ -1,0 +1,256 @@
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<style>
+
+ul{
+  text-decoration: none;
+  list-style: none;
+}
+  .rem{
+
+  }
+  .rem2{
+
+  }
+  .jumbotron{
+    width:1300px;
+  }
+  .comm{
+
+  }
+  .comup{
+
+  }
+  .comdown{
+
+  }
+
+</style>
+<body>
+
+<div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/user">Home</a></li>
+      <li><a href="/question/<%=sign.Eid%>">Ask a Question</a></li>
+      <li><a href="/ans">Answer</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href="/profile"> Profile <i class="fa fa-bell-o" aria-hidden="true"></i></a></li>
+    </ul>
+
+  </div>
+</nav>
+
+
+</div>
+
+
+<div id="eque">
+
+<ul v-for="x in ques">
+<div id="jumbotron">
+
+<li class="jumbotron">
+<p>Ques. {{x.content}} </p>
+  <p>Asked By:-{{x.name}}</p>
+  <p>Categories</p>
+    <ul v-for="q in x.cat">
+      <p><a v-bind:href='link(q)'><li>{{q}}</li></a><p>
+    </ul>
+    <p>{{x.time}}</p>
+<div class="row">
+  <div class="col-md-3">
+
+    <form method="post" >
+      <button class="btn btn-primary rem" v-bind:id="x.project">Upvote<p id="change"> {{x.upvote}}</p></button>
+
+      </form>
+  </div>
+
+  <div class="col-md-3">
+
+    <form method="post" >
+    <button class="btn btn-primary rem2" v-bind:id="x.project">downvote<p id="change">{{x.downvote}}</p></button>
+      </form >
+  </div>
+<br><br><br><br><br>
+  <div>
+    <p>Answer</p>
+    <ul>
+      <li v-for="q in x.ans">
+        <p>{{q.name}} </p>
+        <p>Ans. {{q.cont}}</p>
+        <div class="row">
+          <div class="col-md-2">
+
+            <form v-bind:id="q.aid" class="comm">
+
+              <button class="btn btn-success comup" v-bind:id="x.project">Upvote <p id="change">{{q.upvote}}</p></button>
+            </form>
+
+          </div>
+          <div class="col-md-2">
+
+            <form v-bind:id="q.aid" class="comm2">
+              <button class="btn btn-danger comdown" v-bind:id="x.project" >Downvote <p id="change">{{q.downvote}}</p></button>
+            </form>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+</li>
+
+</div>
+
+</ul>
+
+</div>
+<br>
+
+  <script>
+      new Vue({
+          el:"#eque",
+          data:{
+              len:[],
+              tmp:'hello',
+              ques:[<% ques.forEach(function(x){%>
+                  <%x.anser._id=0%>
+                  {content:'<%=x.ques%>',upvote:'<%=x.upvote.length%>',downvote:'<%=x.downvote.length%>',asked:'<%= x.askedby%>',project:'<%=x.qid%>',name:'<%=x.ask%>',ans:[<%x.anser.forEach(function(y){%>{cont:'<%=y.cont%>',upvote:'<%=y.upvote.length%>',downvote:'<%=y.downvote.length%>',cont:'<%=y.cont%>',aid:<%=y.aid%>,person:<%=y.per%>,name:'<%=y.name%>'}, <%})%>],cat:[<%x.category.forEach(function(q){%>'<%=q%>',<%})%>],time:'<%=x.time%>' },
+
+                <%})%>]
+          },
+          methods:{
+            link:function(li)
+            {
+
+              return '/'+li;
+            }
+
+          }
+      });
+$(document).ready(function(){
+
+    $('.comm').submit(function(){
+        event.preventDefault();
+      console.log();
+      var ans=$(this).attr('id');
+      var ques=$(this).find('.comup').attr('id');
+      var z=$(this).find("#change");
+      $.ajax({
+         url:'/upcomment',
+          method:"POST",
+          contentType:'application/json',
+          data:JSON.stringify({'ques':ques,'ans':ans,'user':<%=sign.Eid%>}),
+          success:function(res){
+        z.html(res.anser['0'].upvote.length);
+          }
+
+      })
+    });
+
+    $('.comm2').submit(function(){
+        event.preventDefault();
+        console.log();
+        var ans=$(this).attr('id');
+        var ques=$(this).find('.comdown').attr('id');
+        var z=$(this).find("#change");
+        $.ajax({
+            url:'/downcomment',
+            method:"POST",
+            contentType:'application/json',
+            data:JSON.stringify({'ques':ques,'ans':ans,'user':<%=sign.Eid%>}),
+            success:function(res){
+                z.html(res.anser['0'].downvote.length);
+            }
+
+        })
+
+
+    })
+
+
+$('rem').click(function(){
+
+  alert("Stop")
+});
+
+
+/*
+ $('.rem').click(function(){
+   console.log("Here");
+    var z= $(this).find("#change");
+
+     var k=$(this)['0'];
+     event.preventDefault();
+     $.ajax({
+
+         url:'/doupvote',
+         method:'POST',
+         contentType:'application/json',
+         data:JSON.stringify({'project':k.id,client:'<%=sign.Eid%>'}),
+         success:function(res){
+
+             if(res.comm=='')
+             {
+              z.html(res.data.upvote.length);
+             }
+         }
+
+
+
+     })
+ })
+ */
+
+
+    $('.rem2').click(function(){
+        var z= $(this).find("#change");
+
+        var k=$(this)['0'];
+        event.preventDefault();
+        $.ajax({
+
+            url:'/dodownvote',
+            method:'POST',
+            contentType:'application/json',
+            data:JSON.stringify({'project':k.id,client:'<%=sign.Eid%>'}),
+            success:function(res){
+
+                if(res.comm=='')
+                {
+                    z.html(res.data.downvote.length);
+                }
+
+
+            }
+
+
+
+        })
+
+    })
+
+})
+
+  </script>
+</body>
+</html>

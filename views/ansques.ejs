@@ -1,0 +1,41 @@
+
+<html>
+
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/user">Home</a></li>
+      <li><a href="/question">Ask a Question</a></li>
+      <li><a href="/ans">Answer</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+
+
+  <form method="POST" action="/ansdone">
+    <p name="ques"><%=ques %></p>
+    <input type="text" name="ques" value="<%=ques%>" style="display:none">
+  <input type="text"  name="ans">
+  <button type="submit" class="btn btn-primary">Share</button>
+  </form>
+
+
+</body>
+</html>
