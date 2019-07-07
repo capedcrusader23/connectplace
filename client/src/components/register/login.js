@@ -1,34 +1,54 @@
 import React,{Component} from 'react'
-
-class Login extends Component{
+import {Link} from 'react-router-dom'
+class Register extends Component{
+	constructor()
+	{
+		super()
+		this.state={
+			name:'',
+			email:'',
+			password:'',
+			Password2:'',
+			errors:{}
+		}
+	this.onchange=this.onchange.bind(this)
+	this.onsubmit=this.onsubmit.bind(this)
+	}
+	onchange(e){
+	this.setState({[e.target.name]:e.target.value})
+	}
+	onsubmit(e)
+	{
+		e.preventDefault();
+		console.log(this.state)
+	}
 render(){
-    console.log(this.props)
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"5px"}}>
-    
-	<div className="col s4 z-depth-6 card-panel" style={{width:"500px",display: 'flex',  justifyContent:'center'}}>
-		<form className="register-form">        
-			<div className="row margin">
-				<div className="input-field col s12">
-					<i className="mdi-communication-email prefix"></i>
-					<input id="user_email" type="email" className="validate" />
+        <div>
+	<div style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"5px"}}>
+		<form class="register-form" onSubmit={this.onsubmit}>        
+		
+			<div class="row margin">
+				<div class="input-field col s12">
+					<i class="mdi-communication-email prefix"></i>
+					<input id="user_email" type="email" value={this.state.email} name="email" onChange={this.onchange} />
 					<label for="user_email" class="center-align">Email</label>
 				</div>
 			</div>
-			<div className="row margin">
-				<div className="input-field col s12">
-					<i className="mdi-action-lock-outline prefix"></i>
-					<input id="user_passw" type="password" className="validate" />
+			<div class="row margin">
+				<div class="input-field col s12">
+					<i class="mdi-action-lock-outline prefix"></i>
+					<input id="user_passw" type="password"  value={this.state.password} name="password" onChange={this.onchange}/>
 					<label for="user_passw">Password</label>
 				</div>
 			</div>
-			
-			<div className="row margin">
-				<div className="input-field col s12">
-					<a href="register.html" className="btn waves-effect waves-light col s12">Register Now</a>
+		
+			<div class="row">
+				<div class="input-field col s12">
+					<button  class="btn waves-effect waves-light col s12">Login	</button>
 				</div>
 				<div className="input-field col s12">
-					<p className="margin center medium-small sign-up">Already have an account? <a href="login.php">Login</a></p>
+					<p className="margin center medium-small sign-up">Don't have account? Register <Link to="/register">register</Link></p>
 				</div>
 			</div>
 		</form>
@@ -42,4 +62,4 @@ render(){
     )
 }
 }
-export default Login
+export default Register

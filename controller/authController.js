@@ -5,15 +5,17 @@ const jwt=require('jsonwebtoken')
 const {secret}=require('../config/keys.js')
 module.exports={
 register:async(req,res)=>{
+console.log(req.body)
 const {error,isValid}=validateRegisterInput(req.body);
 if(!isValid)
 {
 return res.status(400).json(error);
 }
 const us=await User.findOne({email:req.body.email});
+console.log(us)
 if(us)
 {
-    res.json({"error":"User with email already exist"});
+    res.status(400).json({"error":"User with email already exist"});
 }
 else
 {
@@ -30,6 +32,7 @@ us.mobile=req.body.mobile;
 us.lastlogin=null;
 us.pic=null;
 let us2=await us.save();
+console.log(us2)
 res.json({"success":"REGISTERED",us:us2});
 }
 },

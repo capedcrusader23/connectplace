@@ -13,13 +13,13 @@ let user=new schema({
    },
    date:{
        dd:{
-           type:String
+           type:Number
        },
        mm:{
-           type:String
+           type:Number
        },
        yy:{
-           type:String
+           type:Number
        }
    },
    college:{
