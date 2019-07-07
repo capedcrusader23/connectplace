@@ -27,9 +27,7 @@ render(){
 				<div class="input-field col s12">
 					<a href="register.html" class="btn waves-effect waves-light col s12">Register Now</a>
 				</div>
-				<div class="input-field col s12">
-					<p class="margin center medium-small sign-up">Already have an account? <a href="login.php">Login</a></p>
-				</div>
+				
 			</div>
 		</form>
 	

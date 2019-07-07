@@ -22,19 +22,20 @@ class Landing extends Component{
     onchange2()
     {  
             this.setState({
-                toggle:false
+                toggle:true
             })   
+            console.log(this.state)
     }
    
 render()
 {
-if(this.toggle) 
+if(this.state.toggle) 
 {
     return(
         <div>
 <Register></Register>
     <div class="input-field col s12">
-	<button class="margin center medium-small sign-up" onclick={this.change}>Login</button>
+	<button class="margin center medium-small sign-up" onClick={this.change}>Login</button>
 	</div>
         </div>
     ) 
@@ -44,9 +45,10 @@ else
 {
     return (
     <div>
-    <Login toggle={this.state.toggle}></Login>
+    <Login></Login>
     <div class="input-field col s12">
-			<button class="margin center medium-small sign-up" onclick={this.onchange2}>Login</button>
+        <p>{this.state.toggle}</p>
+			<button class="margin center medium-small sign-up" onClick={this.onchange2}>Login</button>
 				</div>
                 </div>
     )
