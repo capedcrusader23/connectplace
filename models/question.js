@@ -25,14 +25,14 @@ const question=new schema({
     topic:{
         type:Object
     },
-    language:{
+    language:[{
         type:[schema.Types.ObjectId],
         refs:'languages'
-    },
-    company:{
+    }],
+    company:[{
         type:schema.Types.ObjectId,
         refs:'companys'
-    },
+    }],
     ques:{
         type:String
     },

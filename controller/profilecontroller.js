@@ -2,9 +2,12 @@ const question=require('../models/question.js')
 const validateQuery=require('../validation/validatequery.js')
 const User=require('../models/user')
 const jwt=require('jsonwebtoken')
+const compan=require('../models/comapny')
+const lang=require('../models/language')
+
+
 module.exports={
-    postquery:async(req,res)=>{
-        console.log(req.body)
+    postquery:(req,res)=>{
         const {error,isValid}=validateQuery(req.body);
         if(!isValid)
         {
@@ -18,24 +21,33 @@ module.exports={
         query.ques=req.body.ques
         query.createdAt=Date.now();
         query.comments=[]
-        let k=req.body.topic
-        var pa=
-            {
-            k:1
-            }        
-        console.log(k)
-          query.topic={...query.topic,...pa}
-        /*if(req.body.topic)
-        {
-            for(var q=0;q<req.body.topic.length;q++)
-            {
-                query.topic[req.body.topic[q]]=1;
-            }
-        }
-        */
-        query.per=req.user._id
-        let que=await query.save();
-        return res.status(200).json({"success":"Done with the post"});
+        query.language=[]
+        query.company=[]
+        query.save().then((d)=>{
+            for(var q=0;q<req.body.language.length;q++){
+                let x=req.body.language[q];
+            lang.findOne({cat:x}).then((ch)=>{
+                console.log(ch)
+              if(ch)
+              {
+                  d.language.push(ch)
+              } else
+              {
+                    let q=new lang()
+                    q.cat=x;
+                   q.save().then((da)=>{
+                      d.language.push(da);
+                   });
+              }
+            }) 
+          }
+          d.save().then((da)=>{
+              console.log("FINAL")
+              console.log(da)
+          })
+        })    
+    
+    
     },
 
     fetchprofile:async(req,res)=>{
@@ -125,7 +137,7 @@ module.exports={
             res.status(400).json({"err":"No user found"})
         }
     },
-    comment:async(req,res)=>{
+    comment:async(req,res)=>{console.log("FOUND")
         let post=await question.findOne({_id:req.params.id})
         let po={
             text:req.body.text,

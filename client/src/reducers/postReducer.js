@@ -1,4 +1,4 @@
-import {GET_POSTS,ADD_LIKE} from '../action/types'
+import {GET_POSTS,ADD_LIKE,ADD_POST} from '../action/types'
 const initialState={
     posts:[],
     post:{},
@@ -8,6 +8,7 @@ export default function(state=initialState,action)
 { 
     console.log(action.payload)
     switch(action.type){
+    
         case ADD_LIKE:return{
                     ...state,
                     post:action.payload

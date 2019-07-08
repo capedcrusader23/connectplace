@@ -21,7 +21,9 @@ const authLinks=
 
 <NavItem>
 <a href="#" onClick={this.onLogoutClick.bind(this)}> Logout</a>
-
+</NavItem>
+<NavItem>
+<Link to="/addpost" > Contribute</Link>
 </NavItem>
 </Navbar>
 )
