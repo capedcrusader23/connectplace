@@ -9,10 +9,7 @@ componentDidMount()
 {
 this.props.getPost();
 }
-componentWillReceiveProps(nextProps)
-{
-    console.log(nextProps)
-}
+
 render(){
     const {posts}=this.props.post;
     let postConetent;

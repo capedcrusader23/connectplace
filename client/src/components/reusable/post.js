@@ -31,10 +31,10 @@ class Post extends Component{
     }
     componentWillReceiveProps(nextProp)
     {
-     //this.setState({
-       //upvotes:this.props.post.post.upvotes
-     //})
-     console.log(this.props.post.post.upvotes)
+        
+     this.setState({
+       upvotes:nextProp.upvotes
+     })
     }
     render(){
         
@@ -45,10 +45,10 @@ class Post extends Component{
                 <Col m={6} s={12}>
                 <Card
                 className="blue-grey darken-1"
-                textClassName="white-text"
-                title={this.props.title}
+                textClassName="white-text"state
+                title={this.props.title}state
                 actions={[<a>
-                    <p>{this.state.upvotes.length}</p>
+                    <p>{this.props.upvotes.length}</p>
                     <Button
                         floating
                         large
@@ -59,7 +59,7 @@ class Post extends Component{
                         />
                 </a>,
                 <a>
-                    <p>{this.state.downvotes.length}</p>
+                    <p>{this.props.downvotes.length}</p>
                     <Button
                         floating
                         large
