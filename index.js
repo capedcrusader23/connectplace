@@ -5,9 +5,10 @@ const mongoose=require('mongoose')
 const passport=require('passport')
 const cors=require('cors')
 const body=require('body-parser')
-mongoose.connect('mongodb://uphaar22:uphaar22@ds149754.mlab.com:49754/jiitfile',function(){
-    console.log("Connected")
+mongoose.connect('mongodb://localhost:27017/jiitplacement',()=>{
+    console.log("CONNECTETD")
 })
+
 app.use(body.json())
 app.use(cors())
 app.use(passport.initialize());

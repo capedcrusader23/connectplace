@@ -3,6 +3,11 @@ const CommonController=require('./CommonComtroller.js')
 const validateRegisterInput=require('../validation/validate.js')
 const jwt=require('jsonwebtoken')
 const {secret}=require('../config/keys.js')
+const validateLoginInput=require('../validation/validatelogin')
+User.find().then((da)=>{
+    console.log(da)
+})
+
 module.exports={
 register:async(req,res)=>{
 console.log(req.body)
@@ -38,7 +43,11 @@ res.json({"success":"REGISTERED",us:us2});
 },
 
 login:async(req,res)=>{
-    
+    const {error,isValid}=validateLoginInput(req.body);
+if(!isValid)
+{
+return res.status(400).json(error);
+}
 const us=await User.findOne({email:req.body.email})
 
 if(us)
@@ -53,12 +62,12 @@ if(check==true)
 }
 else
 {
-    res.json({"error":"wrong password"})
+    res.status(400).res.json({"error":"wrong password"})
 }
 }
 else
 {
-    res.json({"error":"Email don't Exist"})
+    res.status(400).json({"error":"Email don't Exist"})
 }
 }
 }

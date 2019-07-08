@@ -8,12 +8,20 @@ const question=new schema({
     content:{   
         type:String
     },
-    upvotes:{
-        type:Object
-    },
-    downvotes:{
-        type:Object
-    },
+    upvotes:[
+        {
+        user:{
+            type:schema.Types.ObjectId,
+            refs:'users'
+        }}
+    ],
+    downvotes:[
+        {
+        user:{
+            type:schema.Types.ObjectId,
+            refs:'users'
+        }}
+    ],
     topic:{
         type:Object
     },
@@ -34,7 +42,23 @@ const question=new schema({
     },
     createdAt:{
         type:Date
-    }
+    },
+    comments:[{
+        user:{
+            type:schema.Types.ObjectId,
+            ref:'users'
+        },
+        text:{
+            type:String
+        },
+        name:{
+            type:String
+        },
+        date:{
+            type:Date,
+            default:Date.now()
+        }
+    }]
 })
 let que=mongoose.model('question',question)
 module.exports=que;
