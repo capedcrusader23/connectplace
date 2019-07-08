@@ -47,28 +47,28 @@ class Post extends Component{
                 className="blue-grey darken-1"
                 textClassName="white-text"state
                 title={this.props.title}state
-                actions={[<a>
-                    <p>{this.props.upvotes.length}</p>
-                    <Button
+                actions={[
+                    <Col m={6} s={6}><Button
                         floating
                         large
                         className="green"
                         waves="light"
                         icon="thumb_up"
                         onClick={this.doup.bind(this,this.props.id2)}
-                        />
-                </a>,
-                <a>
-                    <p>{this.props.downvotes.length}</p>
-                    <Button
+                    />
+                    <p>{this.props.upvotes.length}</p>
+                    </Col>,
+                    <Col m={6} s={6}><Button
                         floating
                         large
                         className="red"
                         waves="light"
                         icon="thumb_down"
-                        
-                        />
-                </a>]}
+                        // onClick={this.dodown.bind(this,this.props.id2)}
+                    />
+                    <p>{this.props.downvotes.length}</p>
+                    </Col>
+                ]}
                 >
                 By - {this.props.author}
                 <br/><br/>

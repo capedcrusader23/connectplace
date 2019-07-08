@@ -5,9 +5,7 @@ const mongoose=require('mongoose')
 const passport=require('passport')
 const cors=require('cors')
 const body=require('body-parser')
-mongoose.connect('mongodb://localhost:27017/jiitplacement',()=>{
-    console.log("CONNECTETD")
-})
+mongoose.connect('mongodb://localhost:27017/jiitplacement', {useNewUrlParser: true})
 
 app.use(body.json())
 app.use(cors())
