@@ -27,7 +27,7 @@ const question=new schema({
     },
     language:[{
         language:{
-            type:[schema.Types.ObjectId],
+            type:schema.Types.ObjectId,
             refs:'languages'
         },
         name:{

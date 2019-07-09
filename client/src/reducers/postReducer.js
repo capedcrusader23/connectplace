@@ -4,7 +4,9 @@ const initialState={
     post:{},
     loading:false,
     categories:[],
-    lang:[]
+    lang:[],
+    sortcomp:[],
+    sortlang:[]
 }
 export default function(state=initialState,action)
 { 
@@ -12,11 +14,11 @@ export default function(state=initialState,action)
     switch(action.type){
         case GET_LAN:return{
             ...state,
-            lang:action.payload
+            sortlang:action.payload
         }
         case GET_COMP:return{
             ...state,
-            lang:action.payload
+            sortcomp:action.payload
         }
         case GET_LANG:return{
             ...state,

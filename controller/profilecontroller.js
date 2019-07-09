@@ -44,6 +44,7 @@ module.exports={
                         da.count++;
                         da.save().then(()=>{
                             let opt={
+                                language:da,
                                 name:da.cat
                             }
                             query.language.push(opt)
@@ -57,6 +58,7 @@ module.exports={
                         q.count++;
                         q.save().then((qe)=>{
                             let opt={
+                                language:qe,
                                 name:qe.cat
                             }
                             query.language.push(opt)
@@ -90,7 +92,7 @@ module.exports={
                                 da.save().then(()=>{
                                     let opt={
                                         company:da,
-                                        name:da.name,
+                                        name:da.cat,
                                     }
                                     query.company.push(opt)
                                     callback()
@@ -104,7 +106,7 @@ module.exports={
                                 q.save().then((qe)=>{
                                     let opt={
                                         company:qe,
-                                        name:qe.name
+                                        name:qe.cat
                                     }
                                     query.company.push(opt)
                                     callback()
@@ -235,11 +237,13 @@ module.exports={
         res.status(200).json(q)
     },
     getl:async(req,res)=>{
-        let q=await question.find({'language._id':req.params.id}).sort({createdAt:-1})
+        let q=await question.find({'language.language':req.params.id}).sort({createdAt:-1})
+
         res.status(200).json(q)
     },
     getc:async(req,res)=>{
-        let q=await question.find({'company._id':req.params.id}).sort({createdAt:-1})
+        console.log(req.params)
+        let q=await question.find({'company.company':req.params.id}).sort({createdAt:-1})
         res.status(200).json(q)
     }
 }

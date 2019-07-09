@@ -80,12 +80,12 @@ class Post extends Component{
                 <p>Languages/Topic</p>
                 {
                 this.state.tags.map((value, index) => {
-                    return <Link to={`/topic/${value._id}`}><Tag name={value.name}></Tag></Link>
+                    return <Link to={`/topic/${value.language}`}><Tag name={value.name}></Tag></Link>
                 })}
                 <p>Company</p>
                 {
                 this.state.company.map((value, index) => {
-                    return <Link to={`/company/${value._id}`}><Tag name={value.name}></Tag></Link>
+                    return <Link to={`/company/${value.company}`}><Tag name={value.name}></Tag></Link>
                 })}
                 </Card>
                 </Col>

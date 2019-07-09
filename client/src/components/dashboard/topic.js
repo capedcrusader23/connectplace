@@ -6,19 +6,17 @@ class Dashboard extends Component
 {
 componentDidMount()
 {
-    console.log(this.props.match.params.id)
-this.props.fetchcompsp(this.props.match.params.id);
+this.props.fetchlangsp(this.props.match.params.id)
 }
 
 render(){
-    const {sortcomp}=this.props.post;
+    const {sortlang}=this.props.post;
     let postConetent;
-    
-     if(sortcomp)
+   
+     if(sortlang)
     {
-        postConetent=sortcomp.map(post=><Post company={post.company} key={post._id} title={post.ques} author={post.per} tags={post.language} upvotes={post.upvotes} downvotes={post.downvotes} id2={post._id}></Post>)
+        postConetent=sortlang.map(post=><Post company={post.company} key={post._id} title={post.ques} author={post.per} tags={post.language} upvotes={post.upvotes} downvotes={post.downvotes} id2={post._id}></Post>)
     }
-    
     
     return(
         <div>
