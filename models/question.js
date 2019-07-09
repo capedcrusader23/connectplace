@@ -26,19 +26,34 @@ const question=new schema({
         type:Object
     },
     language:[{
-        type:[schema.Types.ObjectId],
-        refs:'languages'
+        language:{
+            type:[schema.Types.ObjectId],
+            refs:'languages'
+        },
+        name:{
+            type:String
+        }
     }],
     company:[{
+       company:{
         type:schema.Types.ObjectId,
         refs:'companys'
+       } ,
+       name:{
+           type:String
+       }
     }],
     ques:{
         type:String
     },
     per:{
-    type:schema.Types.ObjectId,
-    ref:'users'
+        person:{
+            type:schema.Types.ObjectId,
+            ref:'users'        
+        },
+        name:{
+            type:String
+        }
     },
     createdAt:{
         type:Date

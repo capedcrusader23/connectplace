@@ -2,8 +2,12 @@ const mongoose=require('mongoose')
 const schema=mongoose.Schema
 
 const cat=new schema({
-    name:{
+    cat:{
         type:String
+    },
+    count:{
+        type:Number,
+        default:0
     }
 })
 

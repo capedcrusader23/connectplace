@@ -14,6 +14,7 @@ import { setCurrentUser, logoutuser } from './action/auth'
 import PrivateRoutes from './components/common/privateroute'
 import Dashboad from './components/dashboard/dashboard'
 import ADDPost from './components/dashboard/addpost1'
+import Company from './components/dashboard/company'
 if (localStorage.jwtToken) {
   console.log("here")
   setAuthToken(localStorage.jwtToken);
@@ -43,6 +44,8 @@ class App extends Component {
               <Route exact path="/login" component={Login}></Route>
               <PrivateRoutes exact path="/dashboard" component={Dashboad}></PrivateRoutes>
               <PrivateRoutes exact path="/addpost" component={ADDPost}></PrivateRoutes>
+              <PrivateRoutes exact path="/company/:id" component={Company}></PrivateRoutes>
+              <PrivateRoutes exact path="/topic/:id" component={Company}></PrivateRoutes>
             </div>
             <Landing></Landing>
 

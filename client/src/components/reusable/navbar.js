@@ -18,7 +18,9 @@ const {isAuthenticatetd,user}=this.props.auth
 const authLinks=
 (
     <Navbar  alignLinks="right" className="#212121 grey darken-4 cent">
-
+<NavItem>
+<Link to="/dashboard" > Feeds</Link>
+</NavItem>
 <NavItem>
 <a href="#" onClick={this.onLogoutClick.bind(this)}> Logout</a>
 </NavItem>

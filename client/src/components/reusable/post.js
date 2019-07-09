@@ -1,41 +1,46 @@
 import React,{Component} from 'react'
 import {Card,Col,Row,Button} from 'react-materialize'
 import Tag from './tag.js'
-import {addlike,removelike} from '../../action/post'
+import {addlike} from '../../action/post'
 import {connect} from 'react-redux'
-let tags;
-let upvotes;
-let downvotes;
+import {Link} from 'react-router-dom'
 class Post extends Component{
     constructor(props)
     {
         super(props);
-        tags=this.props.tags;
+       
        this.state={
            upvotes:[],
-           downvotes:[]
+           downvotes:[],
+           tags:[],
+           company:[]
        }
     }
     componentWillMount()
     {
         this.setState({
             upvotes:this.props.upvotes,
-            downvotes:this.props.downvotes
+            downvotes:this.props.downvotes,
+            tags:this.props.tags,
+            company:this.props.company
         })
 
+       this.props.tags.map((val,index)=>{
+           console.log(val["name"])
+       })
         console.log(this.state)
+    }
+    componentWillReceiveProps(nextProps)
+    {
+       this.setState({
+           upvotes:nextProps.upvotes
+       })
     }
     doup(id)
     {
         this.props.addlike(id)
     }
-    componentWillReceiveProps(nextProp)
-    {
-        
-     this.setState({
-       upvotes:nextProp.upvotes
-     })
-    }
+  
     render(){
         
         return(
@@ -56,7 +61,7 @@ class Post extends Component{
                         icon="thumb_up"
                         onClick={this.doup.bind(this,this.props.id2)}
                     />
-                    <p>{this.props.upvotes.length}</p>
+                  <p>{this.state.upvotes.length}</p>
                     </Col>,
                     <Col m={6} s={6}><Button
                         floating
@@ -66,15 +71,21 @@ class Post extends Component{
                         icon="thumb_down"
                         // onClick={this.dodown.bind(this,this.props.id2)}
                     />
-                    <p>{this.props.downvotes.length}</p>
+                  <p>{this.state.downvotes.length}</p>
                     </Col>
                 ]}
                 >
-                By - {this.props.author}
+                By - {this.props.author.name}
                 <br/><br/>
+                <p>Languages/Topic</p>
                 {
-                tags.map((value, index) => {
-                    return <Tag name={value}></Tag>
+                this.state.tags.map((value, index) => {
+                    return <Link to={`/topic/${value._id}`}><Tag name={value.name}></Tag></Link>
+                })}
+                <p>Company</p>
+                {
+                this.state.company.map((value, index) => {
+                    return <Link to={`/company/${value._id}`}><Tag name={value.name}></Tag></Link>
                 })}
                 </Card>
                 </Col>
@@ -87,4 +98,4 @@ class Post extends Component{
 const mapStateToProps=state=>({
     post:state.post
 })
-export default connect(mapStateToProps,{addlike,removelike})(Post)
+export default connect(mapStateToProps,{addlike})(Post)

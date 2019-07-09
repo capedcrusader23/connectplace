@@ -11,6 +11,8 @@ route.post('/post/:id',passport.authenticate('jwt',{session:false}),profilecontr
 route.post('/postlike/:id',passport.authenticate('jwt',{session:false}),profilecontroller.upvote)
 route.post('/postdislike/:id',passport.authenticate('jwt',{session:false}),profilecontroller.downvote)
 route.post('/comment/:id',passport.authenticate('jwt',{session:false}),profilecontroller.comment)
-
-
+route.get('/getlang',passport.authenticate('jwt',{session:false}),profilecontroller.getlang)
+route.get('/getcomp',passport.authenticate('jwt',{session:false}),profilecontroller.getcomp)
+route.get('/getl/:id',passport.authenticate('jwt',{session:false}),profilecontroller.getl)
+route.get('/getc/:id',passport.authenticate('jwt',{session:false}),profilecontroller.getc)
 module.exports=route;

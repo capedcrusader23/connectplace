@@ -4,7 +4,7 @@ const User=require('../models/user')
 const jwt=require('jsonwebtoken')
 const compan=require('../models/comapny')
 const lang=require('../models/language')
-
+const async=require('async')
 
 module.exports={
     postquery:(req,res)=>{
@@ -23,29 +23,107 @@ module.exports={
         query.comments=[]
         query.language=[]
         query.company=[]
-        query.save().then((d)=>{
-            for(var q=0;q<req.body.language.length;q++){
-                let x=req.body.language[q];
-            lang.findOne({cat:x}).then((ch)=>{
-                console.log(ch)
-              if(ch)
-              {
-                  d.language.push(ch)
-              } else
-              {
-                    let q=new lang()
-                    q.cat=x;
-                   q.save().then((da)=>{
-                      d.language.push(da);
-                   });
-              }
-            }) 
-          }
-          d.save().then((da)=>{
-              console.log("FINAL")
-              console.log(da)
-          })
-        })    
+        let opts={
+            person:req.user._id,
+            name:req.user.name
+        }
+        query.per=opts
+        async.each(req.body.language,function(tag,callback){
+            lang.findOne({cat:tag}).then((da,err)=>{
+                
+                console.log(err)
+                if(err)
+                {
+                    callback(err)
+                    return err;
+                }
+                else
+                {
+                    if(da)
+                    {
+                        da.count++;
+                        da.save().then(()=>{
+                            let opt={
+                                name:da.cat
+                            }
+                            query.language.push(opt)
+                            callback()
+                        })
+                    }
+                    else
+                    {   
+                        let q=new lang()
+                        q.cat=tag
+                        q.count++;
+                        q.save().then((qe)=>{
+                            let opt={
+                                name:qe.cat
+                            }
+                            query.language.push(opt)
+                            callback()
+                        })
+
+                    }
+                }
+            })
+        },function(err){
+            if(err)
+            {
+                console.log("SOME HTING WAS WRONG")
+            }
+            else
+            {
+                async.each(req.body.topic,function(tag,callback){
+                    compan.findOne({cat:tag}).then((da,err)=>{
+                        
+                        console.log(err)
+                        if(err)
+                        {
+                            callback(err)
+                            return err;
+                        }
+                        else
+                        {
+                            if(da)
+                            {
+                                da.count++;
+                                da.save().then(()=>{
+                                    let opt={
+                                        company:da,
+                                        name:da.name,
+                                    }
+                                    query.company.push(opt)
+                                    callback()
+                                })
+                            }
+                            else
+                            {   
+                                let q=new compan()
+                                q.cat=tag
+                                q.count=1;
+                                q.save().then((qe)=>{
+                                    let opt={
+                                        company:qe,
+                                        name:qe.name
+                                    }
+                                    query.company.push(opt)
+                                    callback()
+                                })
+        
+                            }
+                        }
+                    })
+                },function(err)
+                {
+                    query.save().then((das)=>{
+                       console.log(das)  
+                    }).then((q)=>{
+                        res.status(200).json("DONE WITH POST");
+                    })
+                })
+        
+            }
+        })
     
     
     },
@@ -111,7 +189,7 @@ module.exports={
         console.log(req.user)
         let us=await User.findOne({_id:req.user._id})
         console.log(us)
-        if(us)
+        if(us)https://www.freelancer.com/dashboard
         {
             let post=await question.findOne({_id:req.params.id})
             if(post.upvotes.filter(like=>like.user.toString()===req.user.id).length>0)
@@ -147,5 +225,21 @@ module.exports={
         post.comments.unshift(po)
         let p=await post.save();
         res.status(200).json(p);
+    },
+    getlang:async(req,res)=>{
+        let q=await lang.find()
+        res.status(200).json(q)
+    },
+    getcomp:async(req,res)=>{
+        let q=await compan.find()
+        res.status(200).json(q)
+    },
+    getl:async(req,res)=>{
+        let q=await question.find({'language._id':req.params.id}).sort({createdAt:-1})
+        res.status(200).json(q)
+    },
+    getc:async(req,res)=>{
+        let q=await question.find({'company._id':req.params.id}).sort({createdAt:-1})
+        res.status(200).json(q)
     }
 }
