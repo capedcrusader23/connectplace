@@ -3,7 +3,8 @@ import {Autocomplete,Col,Row,Button,Icon,TextInput,Textarea, Card,Select} from '
 import Tag1 from './tag1.js'
 import {addPost} from '../../action/post'
 import {connect} from 'react-redux'
-
+import {toast,ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const lang= {"Gus Fring": null,"Saul Goodman": null,"Tuco Salamanca": 'https://placehold.it/250x250'};
 const comp={"Gus Fring": null,"Saul Goodman": null,"Tuco Salamanca": 'https://placehold.it/250x250'};
 class AddPost extends Component{
@@ -14,9 +15,20 @@ class AddPost extends Component{
             comptags:[],
             category:'',
             content:'',
-            ques:''
+            ques:'',
+            val:''
         };
 
+    }
+    componentWillReceiveProps(nextProps)
+    {
+        if(nextProps.errors)
+        {
+            Object.keys(nextProps.errors).forEach(key=>{
+				toast.error(nextProps.errors[key], {position: toast.POSITION.TOP_RIGHT,containerId:'A'});
+			})
+			
+        }
     }
     change=(e)=>{
         console.log(e.target.value)
@@ -40,10 +52,12 @@ class AddPost extends Component{
     }
     enterPressed1 = (event) => {
         var code = event.keyCode || event.which;
+        console.log(code)
         if(code === 13) { 
             var tmp=event.target.value;
+            console.log(tmp)
             if(tmp!=="")
-            {
+            { 
                 const tmp1=this.state.langtags;
                 tmp1.push(tmp);
                 this.setState({langtags:tmp1})
@@ -66,6 +80,7 @@ class AddPost extends Component{
             // alert(this.state.comptags);
         } 
     }
+    
     submit=(e)=>{
         e.preventDefault();
         let data={
@@ -168,4 +183,9 @@ class AddPost extends Component{
         )
     }
 }
-export default connect(null,{addPost})(AddPost)
+const mapStateToProps=state=>({
+    errors:state.errors
+})
+
+
+export default connect(mapStateToProps,{addPost})(AddPost)

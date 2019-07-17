@@ -8,6 +8,7 @@ class Dashboard extends Component
 componentDidMount()
 {
 this.props.getPost();
+console.log(this.props)
 }
 
 render(){

@@ -21,11 +21,16 @@ const authLinks=
 <NavItem>
 <Link to="/dashboard" > Feeds</Link>
 </NavItem>
-<NavItem>
-<a href="#" onClick={this.onLogoutClick.bind(this)}> Logout</a>
-</NavItem>
+
 <NavItem>
 <Link to="/addpost" > Contribute</Link>
+</NavItem>
+<NavItem>
+<Link to="/settings" >Settings</Link>
+</NavItem>
+
+<NavItem>
+<a href="#" onClick={this.onLogoutClick.bind(this)}> Logout</a>
 </NavItem>
 </Navbar>
 )
