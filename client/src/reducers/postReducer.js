@@ -10,7 +10,7 @@ const initialState={
 }
 export default function(state=initialState,action)
 { 
-    console.log(action.payload)
+  
     switch(action.type){
         case GET_LAN:return{
             ...state,
@@ -28,10 +28,7 @@ export default function(state=initialState,action)
             ...state,
             categories:action.payload
         }
-        case ADD_LIKE:return{
-                    ...state,
-                    post:action.payload
-                }
+        
         case GET_POSTS:
            return{
                ...state,

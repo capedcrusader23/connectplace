@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import {registeruser} from '../../action/auth.js'
 import classnames from 'classnames'
 import {withRouter} from 'react-router-dom'
+import {toast,ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class Register extends Component{
 	constructor()
 	{
@@ -33,10 +35,15 @@ class Register extends Component{
 	{
 		if(nextProps.errors)
 		{
+			
 			console.log(nextProps.errors)
+			Object.keys(nextProps.errors).forEach(key=>{
+				toast.error(nextProps.errors[key], {position: toast.POSITION.TOP_RIGHT,containerId:'A'});
+			})
 			this.setState({
 				errors:nextProps.errors
 			})
+
 		} 
 	}
 	onchange(e){

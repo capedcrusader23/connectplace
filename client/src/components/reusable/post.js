@@ -1,10 +1,15 @@
 import React,{Component} from 'react'
 import {Card,Col,Row,Button} from 'react-materialize'
 import Tag from './tag.js'
-import {addlike} from '../../action/post'
+import {addlike,removelike} from '../../action/post'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-class Post extends Component{
+import {toast,ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+class Post extends Component
+{
     constructor(props)
     {
         super(props);
@@ -32,13 +37,22 @@ class Post extends Component{
     }
     componentWillReceiveProps(nextProps)
     {
-       this.setState({
-           upvotes:nextProps.upvotes
-       })
+        
+      
+        this.setState({
+            upvotes:nextProps.post.up.upvotes
+        })
+        this.setState({
+          downvotes:nextProps.post.up.downvotes  
+        })  
     }
     doup(id)
     {
         this.props.addlike(id)
+    }
+    dodown(id)
+    {
+        this.props.removelike(id)
     }
   
     render(){
@@ -69,7 +83,7 @@ class Post extends Component{
                         className="red"
                         waves="light"
                         icon="thumb_down"
-                        // onClick={this.dodown.bind(this,this.props.id2)}
+                        onClick={this.dodown.bind(this,this.props.id2)}
                     />
                   <p>{this.state.downvotes.length}</p>
                     </Col>
@@ -95,7 +109,8 @@ class Post extends Component{
         )
     }
 }
+
 const mapStateToProps=state=>({
-    post:state.post
+    post:state.update
 })
-export default connect(mapStateToProps,{addlike})(Post)
+export default connect(mapStateToProps,{addlike,removelike})(Post)
