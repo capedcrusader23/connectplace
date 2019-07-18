@@ -36,15 +36,16 @@ class Post extends Component
         console.log(this.state)
     }
     componentWillReceiveProps(nextProps)
-    {
-        
-      
+    { 
+      if(nextProps.post.up)
+      {
         this.setState({
             upvotes:nextProps.post.up.upvotes
         })
         this.setState({
           downvotes:nextProps.post.up.downvotes  
-        })  
+        })
+      } 
     }
     doup(id)
     {
