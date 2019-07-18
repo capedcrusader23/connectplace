@@ -60,8 +60,6 @@ class Post extends Component
         return(
             <Row>
                 <center>
-                <Col m={3} s={12}></Col>
-                <Col m={6} s={12}>
                 <Card
                 className="blue-grey darken-1"
                 textClassName="white-text"state
@@ -102,8 +100,6 @@ class Post extends Component
                     return <Link to={`/company/${value.company}`}><Tag name={value.name}></Tag></Link>
                 })}
                 </Card>
-                </Col>
-                <Col m={3} s={12}></Col>
                 </center>
             </Row>
         )

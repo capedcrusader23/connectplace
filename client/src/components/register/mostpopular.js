@@ -41,20 +41,24 @@ class Popular extends Component{
     {
         console.log(this.state)
     return(
-        <div>
-            <div>
-                Most Popular topics
-           {this.state.lang.map((value, index) => {
-                    return  <Link to={`/topic/${value._id}`}><Tag name={value.cat} count={value.count}></Tag></Link>
-                })}
-            </div>
-            <div>
-                Most popular companies
-                {this.state.companies.map((value, index) => {
-                    return <Link to={`/company/${value._id}`}><Tag name={value.cat} count={value.count}></Tag></Link>
-                })}
-            </div>
-        </div>
+        <Row>
+            <Col m={12}>
+                <Card>
+                    Most Popular topics
+            {this.state.lang.map((value, index) => {
+                        return  <Link to={`/topic/${value._id}`}><Tag name={value.cat} count={value.count}></Tag></Link>
+                    })}
+                </Card>
+            </Col>
+            <Col m={12}>
+                <Card>
+                    Most popular companies
+                    {this.state.companies.map((value, index) => {
+                        return <Link to={`/company/${value._id}`}><Tag name={value.cat} count={value.count}></Tag></Link>
+                    })}
+                </Card>
+            </Col>
+        </Row>
     )
 }
 }

@@ -3,6 +3,7 @@ import Post from '../reusable/post.js'
 import {connect} from 'react-redux'
 import {getPost} from '../../action/post'
 import Popular from '../register/mostpopular'
+import { Row,Col } from 'react-materialize'
 class Dashboard extends Component
 {
 componentDidMount()
@@ -24,10 +25,17 @@ render(){
         postConetent=posts.map(post=><Post company={post.company} key={post._id} title={post.ques} author={post.per} tags={post.language} upvotes={post.upvotes} downvotes={post.downvotes} id2={post._id} ></Post>)
     }
     return(
-        <div>
-            <Popular></Popular>
-            {postConetent}
-        </div>
+        <Row>
+            <Col m={3} s={12}>
+                <Popular></Popular>
+            </Col>
+            <Col m={6} s={12}>
+                {postConetent}
+            </Col>
+            <Col m={3} s={12}>
+                <Popular></Popular>
+            </Col>
+        </Row>
     )
 }
 }
