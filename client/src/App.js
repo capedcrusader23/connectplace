@@ -5,7 +5,7 @@ import Nav from './components/reusable/navbar.js'
 import Landing from './components/reusable/landing.js'
 import Post from './components/reusable/post.js'
 import Login from './components/register/login'
-import Test1 from './components/reusable/test1'
+import ViewPost from './components/reusable/viewpost'
 import Register from './components/register/register'
 import { Provider } from 'react-redux'
 import store from './store.js'
@@ -44,7 +44,7 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register}></Route>
               <Route exact path="/login" component={Login}></Route>
-              <Route exact path="/test1" component={Test1}></Route>
+              <Route exact path="/viewpost" component={ViewPost}></Route>
               <PrivateRoutes exact path="/dashboard" component={Dashboad}></PrivateRoutes>
               <PrivateRoutes exact path="/addpost" component={ADDPost}></PrivateRoutes>
               <PrivateRoutes exact path="/company/:id" component={Company} ></PrivateRoutes>
