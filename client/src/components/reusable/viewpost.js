@@ -87,8 +87,8 @@ class ViewPost extends Component
 
                                     <div style={{margin:"0.5em",fontSize:"0.8em",fontWeight:"400"}}>Name
                                     </div>
-                                    <div style={{}}>
-                                        <div className="white" style={{marginLeft:"2em",maxWidth:"90%",borderRadius:"20px",padding:"0.6em",height:"auto",fontSize:"0.6em",color:"black"}}>Write Comment</div>
+                                    <div>
+                                        <input className="white" style={{marginLeft:"2em",maxWidth:"90%",borderRadius:"20px",padding:"0.6em",height:"auto",fontSize:"0.6em",color:"black"}} placeholder="Write Comment"></input>
                                         <center><Button className="cyan pulse" waves="light" style={{borderRadius:"30px",marginTop:"1em"}}>Add Comment</Button></center>
                                     </div>
                                 </div>
