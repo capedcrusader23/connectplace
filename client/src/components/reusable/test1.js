@@ -17,7 +17,7 @@ class Test1 extends Component
                 <center>
                     <Col m={1} s={12}></Col>
                     <Col m={10} s={12}>
-                        <CardPanel className="z-depth-5 deep-purple lighten-1 white-text" style={{fontSize:"24px",borderRadius:"10px"}}>
+                        <CardPanel className="z-depth-5 deep-purple lighten-1 white-text flow-text" style={{borderRadius:"10px"}}>
                             <div>Title</div>
                             <div>By</div>
                             <div>Description</div>
