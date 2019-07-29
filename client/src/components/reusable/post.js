@@ -63,14 +63,32 @@ class Post extends Component
                 <center>
                 
                 <Card
-                className="blue-grey darken-1"
+                // className="light-green accent-1"
                 textClassName="white-text"
-                
-                actions={[
-                    <Col m={6} s={6}>
+                style={{backgroundImage:"linear-gradient(indigo,#b388ff)"}}
+                >
+                  <div><Link to={`/viewpost/${this.props.id2}`} style={{color:"white",fontSize:"1.7em",fontWeight:"500"}}>  {this.props.title}</Link></div>
+                  <br></br>
+                By - {this.props.author.name}
+                <br/><br/>
+                <div>Languages / Topic</div>
+                {
+                this.state.tags.map((value, index) => {
+                    return <Link to={`/topic/${value.language}`}><Tag name={value.name}></Tag></Link>
+                })}
+                <div>Company</div>
+                {
+                this.state.company.map((value, index) => {
+                    return <Link to={`/company/${value.company}`}><Tag name={value.name}></Tag></Link>
+                })}
+                <br/><br/>
+                <hr style={{width:"80%"}}></hr>
+                <br/>
+                <Row>
+                <Col m={6} s={6}>
                         <Button floating large className="green" waves="light" icon="thumb_up" onClick={this.doup.bind(this,this.props.id2)}/>
                   <p>{this.state.upvotes.length}</p>
-                    </Col>,
+                    </Col>
                     <Col m={6} s={6}><Button
                         floating
                         large
@@ -81,23 +99,7 @@ class Post extends Component
                     />
                   <p>{this.state.downvotes.length}</p>
                     </Col>
-                    
-                ]}
-                >
-                  <p><Link to={`/viewpost/${this.props.id2}`}>  {this.props.title}</Link></p>
-                  <br></br>
-                By - {this.props.author.name}
-                <br/><br/>
-                <p>Languages/Topic</p>
-                {
-                this.state.tags.map((value, index) => {
-                    return <Link to={`/topic/${value.language}`}><Tag name={value.name}></Tag></Link>
-                })}
-                <p>Company </p>
-                {
-                this.state.company.map((value, index) => {
-                    return <Link to={`/company/${value.company}`}><Tag name={value.name}></Tag></Link>
-                })}
+                </Row>
                 </Card>
                 
                 </center>
