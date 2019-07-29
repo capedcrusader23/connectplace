@@ -34,6 +34,7 @@ submit=(e)=>{
         return(
             <div>
                 <form onSubmit={this.submit}>
+            <div> {this.props.name}:</div>
             <input className="white" style={{ marginLeft: "2em", maxWidth: "90%", borderRadius: "20px", padding: "0.6em", height: "auto", fontSize: "0.6em", color: "black" }} placeholder="Write Comment" onChange={this.change} name="text"></input>
             <center><Button className="cyan pulse" waves="light" style={{ borderRadius: "30px", marginTop: "1em" }}>Add Comment</Button></center>
             </form>
@@ -41,7 +42,6 @@ submit=(e)=>{
         )
     }
 }
-
             /*<div className="deep-orange lighten-5" style={{ borderRadius: "20px", padding: "1em", height: "auto", fontSize: "1em", margin: "0.5em", color: "black" }}>
                                     <div style={{ fontWeight: "500", margin: "0.5em" }}>Comments:</div>                            
                                     <div style={{ textAlign: "justify" }}>
