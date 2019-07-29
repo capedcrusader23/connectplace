@@ -34,5 +34,5 @@ export const getdatacomp=(id)=>dispatch=>{
     axios.get(`http://localhost:1111/profile/getdatacomp/${id}`).then(res=>dispatch({type:GET_COMP_DATA,payload:res.data}))
 }
 export const addComment=(postId,CommentData)=>dispatch=>{
-    axios.post(`http://localhost:1111/profile/comment/${postId}`,CommentData).then(res=>console.log(res.data))
+    axios.post(`http://localhost:1111/profile/comment/${postId}`,CommentData).then(res=>dispatch({type:GET_COMP_DATA,payload:res.data}))
 }

@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {toast,ToastContainer} from 'react-toastify';
 import {withRouter,Link} from 'react-router-dom'
 
-]class AddPost extends Component{
+class AddPost extends Component{
     constructor(props) {
         super(props);
         this.state = 

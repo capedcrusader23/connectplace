@@ -225,7 +225,7 @@ module.exports={
             name:req.body.name,
             user:req.user.id
         }
-        post.comments.unshift(po)
+        post.comments.push(po)
         let p=await post.save();
        
         res.status(200).json(p);

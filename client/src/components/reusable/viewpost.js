@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'react-loader-spinner'
+import CommentFeed from './commentfeed'
 import CommentPost from './comment'
 class ViewPost extends Component {
     constructor(props) {
@@ -104,6 +105,7 @@ class ViewPost extends Component {
                                     </Col>
                                     <Col m={1} s={1}></Col>
                                 </Row>
+                <CommentFeed postId={this.state.post._id} comment={this.state.post.comments} ></CommentFeed>
     <CommentPost id2={this.state.post._id} name={this.state.post.per.name} ></CommentPost>
     
                                 
