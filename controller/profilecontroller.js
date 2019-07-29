@@ -218,6 +218,7 @@ module.exports={
         }
     },
     comment:async(req,res)=>{console.log("FOUND")
+    
         let post=await question.findOne({_id:req.params.id})
         let po={
             text:req.body.text,
@@ -226,6 +227,7 @@ module.exports={
         }
         post.comments.unshift(po)
         let p=await post.save();
+       
         res.status(200).json(p);
     },
     getlang:async(req,res)=>{
@@ -245,5 +247,10 @@ module.exports={
         console.log(req.params)
         let q=await question.find({'company.company':req.params.id}).sort({createdAt:-1})
         res.status(200).json(q)
+    },
+    getdatacomp:async(req,res)=>{
+        let data=await question.findOne({_id:req.params.id});
+        console.log("!!!!!!!!!",data);
+        res.status(200).json(data);
     }
 }

@@ -51,6 +51,7 @@ class App extends Component {
               <PrivateRoutes exact path="/settings" component={Settings}></PrivateRoutes>
               <PrivateRoutes exact path="/company/:id" component={Company} ></PrivateRoutes>
               <PrivateRoutes exact path="/topic/:id" component={Topic}></PrivateRoutes>
+              <PrivateRoutes exact path="/viewpost/:id" component={ViewPost}></PrivateRoutes>
             </div>
             <Landing></Landing>
 

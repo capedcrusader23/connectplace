@@ -1,6 +1,20 @@
 const mongoose=require('mongoose')
 const schema=mongoose.Schema;
 
+let exp=new schema({
+    from:{
+        type:Date
+    },
+    to:{
+        type:Date
+    },
+    description:{
+        type:String
+    },
+    Company:{
+        type:String
+    }
+})
 let user=new schema({
     name:{
         type:String
@@ -38,7 +52,7 @@ let user=new schema({
        type:String
    },
    exprience:{
-       type:Object
+       type:exp
    }
 })
 let use=mongoose.model('user',user)
