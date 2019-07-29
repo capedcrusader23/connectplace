@@ -109,40 +109,60 @@ class AddPost extends Component{
         return(
             <Row>
                 <center>
-                    <form >
-                <Col m={3} s={12}></Col>
-                <Col m={6} s={12}>
+                    <form>
+                <Col m={2} s={12}></Col>
+                <Col m={8} s={12}>
             
-                <Card className="blue-grey darken-1" style={{color:"white",fontSize:'1.5em'}}>
+                <Card className="purple darken-1 z-depth-5" 
+                style={{color:"white",fontSize:'1.5em',borderRadius:"10px"}}>
                 <Row>
-                        <br></br>
+                    <div><center style={{fontSize:"1.5em",fontWeight:"500"}}>Write a post</center></div>
+                    <hr style={{width:"75%"}}></hr>
+                    <br></br><br></br>
+                    
+                    <Select value={this.state.category} onChange={this.change}>
+                        <option disabled>
+                        Select
+                        </option>
+                        <option value="Interview Exprience">
+                        Interview Experience
+                        </option>
+                        <option value="General Query">
+                        General Query
+                        </option>
+                        </Select>
+                        {/* <br></br>
                         <div>Category :</div>
                         <Col s={1}></Col>
+                        <center>
                         <Select value={this.state.category} onChange={this.change}>
-             
-                <option value="Interview Exprience">
-               Interview Experience
-                </option>
-                <option value="General Query">
-                General Query
-                </option>
-                </Select>
+                            <option disabled>
+                            Select
+                            </option>
+                            <option value="Interview Exprience">
+                            Interview Experience
+                            </option>
+                            <option value="General Query">
+                            General Query
+                            </option>
+                            </Select>
+                        </center> */}
                     </Row>
                
                     <Row>
-                        <br></br>
                         <div>Title :</div>
                         <Col s={1}></Col>
                         <TextInput s={10} onChange={this.change2} value={this.ques}/>
                     </Row>
 
                     <Row>
+                        <Col m={6} s={12}>
                         <div>Languages :</div>
                         <Col m={1} s={1}></Col>
                         <Autocomplete onKeyPress={this.enterPressed1.bind(this)}
                          m={10} s={10}
                          options={{data:lang}}
-                         placeholder="Enter languages and press Enter" />
+                         placeholder="Type and press Enter" />
                         <Col m={1} s={1}></Col>
                         {this.state.langtags.map((value, index) => {
                                     if(value!=="")
@@ -150,15 +170,14 @@ class AddPost extends Component{
                                     else
                                         return null;
                         })}
-                        
-                    </Row>
-                    <Row>
+                        </Col>
+                        <Col m={6} s={12}>
                         <div>Company :</div>
                         <Col s={1}></Col>
                         <Autocomplete onKeyPress={this.enterPressed2.bind(this)}
                          s={10} 
                          options={{data:comp}}
-                         placeholder="Enter company name and press Enter" />
+                         placeholder="Type and press Enter" />
                         <Col s={1}></Col>
                         {this.state.comptags.map((value, index) => {
                                     if(value!=="")
@@ -166,6 +185,7 @@ class AddPost extends Component{
                                     else
                                         return null;
                         })}
+                        </Col>
                     </Row>
                     <Row style={{marginBottom:0}}>
                         <div>Description :</div>

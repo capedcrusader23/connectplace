@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {getPost} from '../../action/post'
 import Popular from '../register/mostpopular'
 import { Row,Col } from 'react-materialize'
+import { Scrollbars } from 'react-custom-scrollbars';
+
 class Dashboard extends Component
 {
 componentDidMount()
@@ -29,8 +31,10 @@ render(){
             <Col m={3} s={12}>
                 <Popular></Popular>
             </Col>
-            <Col m={6} s={12} style={{height:"90vh",overflowY:"scroll"}}>
-                {postConetent}
+            <Col m={6} s={12}>
+                <Scrollbars style={{width:"100%",height:"88vh", }}>
+                    {postConetent}
+                </Scrollbars>
             </Col>
             <Col m={3} s={12}>
                 <Popular></Popular>
