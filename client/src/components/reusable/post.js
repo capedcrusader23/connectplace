@@ -59,13 +59,17 @@ class Post extends Component
     render(){
         
         return(
+            
             <Row>
                 <center>
+                
                 <Card
                 className="blue-grey darken-1"
-                textClassName="white-text"state
-                title={this.props.title}state
+                textClassName="white-text"
+                title={this.props.title}
+                to={`/profile/${this.props.id2}`}
                 actions={[
+                  
                     <Col m={6} s={6}><Button
                         floating
                         large

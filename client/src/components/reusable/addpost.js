@@ -4,6 +4,7 @@ import Tag1 from './tag1.js'
 import {addPost} from '../../action/post'
 import {connect} from 'react-redux'
 import {toast,ToastContainer} from 'react-toastify';
+import {withRouter} from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 const lang= {"Gus Fring": null,"Saul Goodman": null,"Tuco Salamanca": 'https://placehold.it/250x250'};
 const comp={"Gus Fring": null,"Saul Goodman": null,"Tuco Salamanca": 'https://placehold.it/250x250'};
@@ -13,7 +14,7 @@ class AddPost extends Component{
         this.state = {
             langtags:[],
             comptags:[],
-            category:'',
+            category:'Interview Exprience',
             content:'',
             ques:'',
             val:''
@@ -55,14 +56,17 @@ class AddPost extends Component{
         console.log(code)
         if(code === 13) { 
             var tmp=event.target.value;
-            console.log(tmp)
             if(tmp!=="")
             { 
                 const tmp1=this.state.langtags;
+                console.log(tmp1)
                 tmp1.push(tmp);
                 this.setState({langtags:tmp1})
+                console.log("!!!!!!111")
+                
+                console.log(this.state.val)
             }
-            event.target.value='';
+            
             // alert(this.state.langtags);
         } 
     }
@@ -80,7 +84,12 @@ class AddPost extends Component{
             // alert(this.state.comptags);
         } 
     }
-    
+    change4=(e)=>{
+        console.log(this.state.val)
+        this.setState({
+            val:e.target.value
+        })
+    }
     submit=(e)=>{
         e.preventDefault();
         let data={
@@ -90,13 +99,17 @@ class AddPost extends Component{
             language:this.state.langtags,
             topic:this.state.comptags
         }
+        console.log(this.props.history)
        this.props.addPost(data,this.props.history)
+    }
+    def=(e)=>{
+        e.preventDefault();
     }
     render(){
         return(
             <Row>
                 <center>
-                    <form>
+                    <form >
                 <Col m={3} s={12}></Col>
                 <Col m={6} s={12}>
             
@@ -106,9 +119,7 @@ class AddPost extends Component{
                         <div>Category :</div>
                         <Col s={1}></Col>
                         <Select value={this.state.category} onChange={this.change}>
-                <option disabled>
-                Select
-                </option>
+             
                 <option value="Interview Exprience">
                Interview Experience
                 </option>
@@ -168,7 +179,7 @@ class AddPost extends Component{
                             onChange={this.change3}
                         />
                     </Row>
-                    <Button type="submit" waves="light" style={{marginBottom:"10px"}} onClick={this.submit}>
+                    <Button type="button" waves="light" style={{marginBottom:"10px"}} onClick={this.submit}>
                         Submit
                         <Icon right>
                         send
@@ -188,4 +199,4 @@ const mapStateToProps=state=>({
 })
 
 
-export default connect(mapStateToProps,{addPost})(AddPost)
+export default connect(mapStateToProps,{addPost})(withRouter(AddPost))
