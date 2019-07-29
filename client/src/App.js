@@ -6,6 +6,7 @@ import Landing from './components/reusable/landing.js'
 import Post from './components/reusable/post.js'
 import Login from './components/register/login'
 import ViewPost from './components/reusable/viewpost'
+import Settings from './components/reusable/settings'
 import Register from './components/register/register'
 import { Provider } from 'react-redux'
 import store from './store.js'
@@ -47,6 +48,7 @@ class App extends Component {
               <Route exact path="/viewpost" component={ViewPost}></Route>
               <PrivateRoutes exact path="/dashboard" component={Dashboad}></PrivateRoutes>
               <PrivateRoutes exact path="/addpost" component={ADDPost}></PrivateRoutes>
+              <PrivateRoutes exact path="/settings" component={Settings}></PrivateRoutes>
               <PrivateRoutes exact path="/company/:id" component={Company} ></PrivateRoutes>
               <PrivateRoutes exact path="/topic/:id" component={Topic}></PrivateRoutes>
             </div>
