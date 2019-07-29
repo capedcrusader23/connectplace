@@ -15,4 +15,5 @@ route.get('/getlang',passport.authenticate('jwt',{session:false}),profilecontrol
 route.get('/getcomp',passport.authenticate('jwt',{session:false}),profilecontroller.getcomp)
 route.get('/getl/:id',passport.authenticate('jwt',{session:false}),profilecontroller.getl)
 route.get('/getc/:id',passport.authenticate('jwt',{session:false}),profilecontroller.getc)
+route.get('/getdatacomp/:id',passport.authenticate('jwt',{session:false}),profilecontroller.getdatacomp)
 module.exports=route;

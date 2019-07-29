@@ -3,7 +3,7 @@ import {Card,Col,Row,Button} from 'react-materialize'
 import Tag from './tag.js'
 import {addlike,removelike} from '../../action/post'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {BrowserRouter as Router,Link} from 'react-router-dom'
 import {toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -66,18 +66,10 @@ class Post extends Component
                 <Card
                 className="blue-grey darken-1"
                 textClassName="white-text"
-                title={this.props.title}
-                to={`/profile/${this.props.id2}`}
+                
                 actions={[
-                  
-                    <Col m={6} s={6}><Button
-                        floating
-                        large
-                        className="green"
-                        waves="light"
-                        icon="thumb_up"
-                        onClick={this.doup.bind(this,this.props.id2)}
-                    />
+                    <Col m={6} s={6}>
+                        <Button floating large className="green" waves="light" icon="thumb_up" onClick={this.doup.bind(this,this.props.id2)}/>
                   <p>{this.state.upvotes.length}</p>
                     </Col>,
                     <Col m={6} s={6}><Button
@@ -90,8 +82,11 @@ class Post extends Component
                     />
                   <p>{this.state.downvotes.length}</p>
                     </Col>
+                    
                 ]}
                 >
+                  <p><Link to={`/viewpost/${this.props.id2}`}>  {this.props.title}</Link></p>
+                  <br></br>
                 By - {this.props.author.name}
                 <br/><br/>
                 <p>Languages/Topic</p>
@@ -99,12 +94,13 @@ class Post extends Component
                 this.state.tags.map((value, index) => {
                     return <Link to={`/topic/${value.language}`}><Tag name={value.name}></Tag></Link>
                 })}
-                <p>Company</p>
+                <p>Company </p>
                 {
                 this.state.company.map((value, index) => {
                     return <Link to={`/company/${value.company}`}><Tag name={value.name}></Tag></Link>
                 })}
                 </Card>
+                
                 </center>
             </Row>
         )
