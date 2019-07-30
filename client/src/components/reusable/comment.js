@@ -21,8 +21,7 @@ change=(e)=>{
 submit=(e)=>{
     e.preventDefault();
     let data={
-        text:this.state.text,
-        name:this.props.name,
+        text:this.state.text
     }
    
   this.props.addComment(this.props.id2,data);
