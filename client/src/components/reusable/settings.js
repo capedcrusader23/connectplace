@@ -1,15 +1,23 @@
 import React,{Component} from 'react'
-import {CardPanel,Col,Row,TextInput} from 'react-materialize'
+import {CardPanel,Col,Row,TextInput,DatePicker} from 'react-materialize'
 import 'react-toastify/dist/ReactToastify.css';
 import Button from 'react-materialize/lib/Button';
-
-
+import {changedetails} from '../../action/post'
+import {connect} from 'react-redux'
 class Settings extends Component
 {
     constructor(props)
     {
         super(props);
-        this.state={section:true};
+        this.state={
+            section:true,
+            name:'',
+            email:'',
+            password:'',
+            college:'',
+            current:'',
+            mobile:''
+        };
     }
     onClick1=()=> {
         console.log("Click1");
@@ -18,6 +26,15 @@ class Settings extends Component
     onClick2=()=> {
         console.log("Click2");
         this.setState({section:false});
+    }
+    submit=(e)=>{
+        e.preventDefault();
+        this.props.changedetails(this.state)
+    }
+    change=(e)=>{
+        this.setState({
+            [e.target.name]:e.target.value
+        })
     }
     render()
     {
@@ -47,33 +64,25 @@ class Settings extends Component
                                 <hr style={{marginBottom:"1.5em",border:"1px solid black"}}/>
                                 <Row>
                                 <form action="#" method="POST">
-                                    <Col m={4} s={12}>Name:<br/> <TextInput placeholder="Name" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}}/> </Col>
+                                    <Col m={4} s={12}>Name:<br/> <TextInput placeholder="Name" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="name" value={this.name} onChange={this.change}/> </Col>
                                     
-                                    <Col m={4} s={12}>Email:<br/> <TextInput placeholder="Email" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}}/> </Col>
+                                    <Col m={4} s={12}>Email:<br/> <TextInput email placeholder="Email" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="email" value={this.email} onChange={this.change}   /> </Col>
     
-                                    <Col m={4} s={12}>Password:<br/> <TextInput placeholder="Password" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}}/> </Col>
+                                    <Col m={4} s={12}>Password:<br/> <TextInput password placeholder="Password" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="password" value={this.password} onChange={this.change} /> </Col>
     
                                     
-                                    <Col m={4} s={12}>College:<br/> <TextInput placeholder="College" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}}/> </Col>
+                                    <Col m={4} s={12}>College:<br/> <TextInput placeholder="College" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="college" onChange={this.change}/> </Col>
                                     
-                                    <Col m={4} s={12}>Current Year:<br/> <TextInput placeholder="Current Year" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}}/> </Col>
+                                    <Col m={4} s={12}>Current Year:<br/> <TextInput placeholder="Current Year" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="current" onChange={this.change}/> </Col>
     
-                                    <Col m={4} s={12}>Mobile:<br/> <TextInput placeholder="Mobile" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}}/> </Col>
-                                    
-                                    <center>
-                                    <Col m={3} s={3}>
-                                        Date of Birth:
-                                    </Col>
-                                    </center>
-                                    <Col m={7} s={7}>
-                                        <input type="date" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}}/>
-                                    </Col>
+                                    <Col m={4} s={12}>Mobile:<br/> <TextInput placeholder="Mobile" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="mobile" onChange={this.change}/> </Col>
+                                        
                                     <center>
                                     <Col m={6} s={6} style={{marginTop:"1.5em"}}>
                                         <input type="reset" value="Clear Fields" style={{backgroundColor:"#ef6c00",padding:"0.3em",borderRadius:"10px"}}/>
                                     </Col>
                                     <Col m={6} s={6} style={{marginTop:"1.5em"}}>
-                                        <input type="submit" value="Save Changes" style={{backgroundColor:"lime",padding:"0.3em",borderRadius:"10px"}}/>
+                                        <input type="submit" value="Save Changes" style={{backgroundColor:"lime",padding:"0.3em",borderRadius:"10px"}} onClick={this.submit}/>
                                     </Col>
                                     </center>
                                 </form>
@@ -145,4 +154,4 @@ class Settings extends Component
     }        
 }
 
-export default Settings
+export default connect(null,{changedetails})(Settings)

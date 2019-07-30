@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-import {GET_COMP_DATA,ADD_POST,GET_ERRORS,GET_POSTS,ADD_LIKE,GET_COMPANY,GET_LANG,GET_LAN,GET_COMP,DOWN_LIKE,LIKE_ERROR, GET_POST} from './types.js'
+import {GET_COMP_DATA,ADD_POST,GET_ERRORS,GET_POSTS,ADD_LIKE,GET_COMPANY,GET_LANG,GET_LAN,GET_COMP,DOWN_LIKE,LIKE_ERROR, GET_POST,CURRENT_USER} from './types.js'
 export const addPost=(postData,history)=>dispatch=>{
     axios.post('http://localhost:1111/profile/postquery',postData).then(res=>{
         console.log(history)
         history.push('/dashboard')
-    })
+    }).catch(err=>dispatch({type:GET_ERRORS,payload:err.response.data}))
 }
 export const getPost=()=>dispatch=>{
     axios.get('http://localhost:1111/profile/landing').then(res=>dispatch({type:GET_POSTS,payload:res.data})).catch(err=>dispatch({type:GET_POSTS,payload:null}))
@@ -35,4 +35,10 @@ export const getdatacomp=(id)=>dispatch=>{
 }
 export const addComment=(postId,CommentData)=>dispatch=>{
     axios.post(`http://localhost:1111/profile/comment/${postId}`,CommentData).then(res=>dispatch({type:GET_COMP_DATA,payload:res.data}))
+}
+export const changedetails=(details)=>dispatch=>{
+    axios.post('http://localhost:1111/profile/changedetails',details).then(res=>console.log(res.data))
+}
+export const getuser=(id)=>dispatch=>{
+    axios.get(`http://localhost:1111/profile/getuser/${id}`).then(res=>dispatch({type:CURRENT_USER,payload:res.payload}))
 }

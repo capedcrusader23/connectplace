@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Col, Row, Button, CardPanel } from 'react-materialize'
 import Tag from './tag.js'
-import { getdatacomp, addlike, removelike } from '../../action/post'
+import { getdatacomp, addlike, removelike,getuser} from '../../action/post'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
@@ -19,7 +19,7 @@ class ViewPost extends Component {
     }
     componentWillMount() {
         this.props.getdatacomp(this.props.match.params.id);
-        
+        this.props.getuser(this.props.auth.user.id)
     }
     componentWillReceiveProps(next)
     {
@@ -120,6 +120,7 @@ class ViewPost extends Component {
         
 }
 const mapStateToProps = state => ({
-    post: state.post
+    post: state.post,
+    auth:state.auth
 })
-export default connect(mapStateToProps, { getdatacomp })(ViewPost)
+export default connect(mapStateToProps, { getdatacomp ,getuser})(ViewPost)

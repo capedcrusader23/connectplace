@@ -23,6 +23,7 @@ class AddPost extends Component{
     }
     componentWillReceiveProps(nextProps)
     {
+        console.log(nextProps.errors)
         if(nextProps.errors)
         {
             Object.keys(nextProps.errors).forEach(key=>{
