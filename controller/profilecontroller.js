@@ -218,11 +218,11 @@ module.exports={
         }
     },
     comment:async(req,res)=>{console.log("FOUND")
-    
+        let us=await User.findOne({_id:req.user._id});
         let post=await question.findOne({_id:req.params.id})
         let po={
             text:req.body.text,
-            name:req.body.name,
+            name:us.name,
             user:req.user.id
         }
         post.comments.push(po)
@@ -251,6 +251,15 @@ module.exports={
     getdatacomp:async(req,res)=>{
         let data=await question.findOne({_id:req.params.id});
         console.log("!!!!!!!!!",data);
+        res.status(200).json(data);
+    },
+    changedetails:async(req,res)=>{
+        console.log(req.body);
+        res.status(200).json(req.body)
+    },
+    getuser:async(req,res)=>{
+        let data=await User.findOne({_id:req.user._id})
+        console.log(data)
         res.status(200).json(data);
     }
 }
