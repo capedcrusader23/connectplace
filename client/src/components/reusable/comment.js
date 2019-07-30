@@ -29,8 +29,10 @@ submit=(e)=>{
     render(){
         return(
             <div>
-                <form onSubmit={this.submit}>
-            <input className="white" style={{ marginLeft: "2em", maxWidth: "90%", borderRadius: "20px", padding: "0.6em", height: "auto", fontSize: "0.6em", color: "black" }} placeholder="Write Comment" onChange={this.change} name="text"></input>
+            <br></br>
+            <form onSubmit={this.submit}>
+            <div className="left-align"> Comment here:</div>
+            <input className="white" style={{ marginLeft: "0em", maxWidth: "90%", borderRadius: "20px", padding: "0.6em", height: "auto", fontSize: "0.6em", color: "black" }} placeholder="Write Comment" onChange={this.change} name="text" required></input>
             <center><Button className="cyan pulse" waves="light" style={{ borderRadius: "30px", marginTop: "1em" }}>Add Comment</Button></center>
             </form>
         </div>

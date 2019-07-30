@@ -42,16 +42,16 @@ class Popular extends Component{
         console.log(this.state)
     return(
         <Row>
-            <Col>
-                <Card>
+            <Col m={12} s={12}>
+                <Card style={{fontWeight:"500",color:"white",borderRadius:"10px",backgroundImage:"linear-gradient(indigo,#bbdefb)"}}>
                     Most Popular topics<br></br><br></br>
                     {this.state.lang.map((value, index) => {
                         return  <Link to={`/topic/${value._id}`}><Tag name={value.cat} count={value.count}></Tag></Link>
                     })}
                 </Card>
             </Col>
-            <Col>
-                <Card>
+            <Col m={12} s={12}>
+                <Card style={{fontWeight:"500",color:"white",borderRadius:"10px",backgroundImage:"linear-gradient(indigo,#bbdefb)"}}>
                     Most popular companies<br></br><br></br>
                     {this.state.companies.map((value, index) => {
                         return <Link to={`/company/${value._id}`}><Tag name={value.cat} count={value.count}></Tag></Link>

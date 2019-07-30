@@ -114,8 +114,8 @@ class AddPost extends Component{
                 <Col m={2} s={12}></Col>
                 <Col m={8} s={12}>
             
-                <Card className="purple darken-1 z-depth-5" 
-                style={{color:"white",fontSize:'1.5em',borderRadius:"10px"}}>
+                <Card className="z-depth-5" 
+                style={{color:"white",fontSize:'1.5em',borderRadius:"10px",backgroundImage:"linear-gradient(purple,indigo)"}}>
                 <Row>
                     <div><center style={{fontSize:"1.5em",fontWeight:"500"}}>Write a post</center></div>
                     <hr style={{width:"75%"}}></hr>

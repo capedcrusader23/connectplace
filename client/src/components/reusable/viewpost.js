@@ -73,11 +73,13 @@ class ViewPost extends Component {
                             </div>
                         </Col>
                         <Col m={9} s={12}>
-                            <CardPanel className="z-depth-5 pink lighten-1 white-text flow-text" style={{ borderRadius: "10px" }}>
+                            <CardPanel className="z-depth-5 white-text flow-text"
+                             style={{ borderRadius: "10px",backgroundImage:"linear-gradient(#4a148c,#b388ff)" }}>
                                 <div className="cyan lighten-5" style={{ color: "black", fontWeight: "500", borderRadius: "10px", padding: "1em", height: "auto", fontSize: "1em", margin: "0.5em" }}>{this.state.post.ques}</div>
                                 By: <Button className="orange" waves="light" style={{ borderRadius: "40%", fontSize: "1em", margin: "0.5em" }}>{this.state.post.per.name}</Button>
                                 <div className="deep-orange lighten-5" style={{ borderRadius: "20px", padding: "1em", height: "auto", fontSize: "1em", margin: "0.5em", color: "black" }}>
                                     <div style={{ fontWeight: "500", margin: "0.5em" }}>Description:</div>
+                                    <hr style={{width:"75%"}}></hr>
                                     <div style={{ textAlign: "justify", margin: "0.5em" }}>{this.state.post.content}</div>
                                 </div>
     

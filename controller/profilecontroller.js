@@ -191,7 +191,7 @@ module.exports={
         console.log(req.user)
         let us=await User.findOne({_id:req.user._id})
         console.log(us)
-        if(us)https://www.freelancer.com/dashboard
+        if(us)
         {
             let post=await question.findOne({_id:req.params.id})
             if(post.upvotes.filter(like=>like.user.toString()===req.user.id).length>0)

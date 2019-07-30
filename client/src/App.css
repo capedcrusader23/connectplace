@@ -8,6 +8,10 @@
   pointer-events: none;
 }
 
+body{
+  background-color:#fffde7 ;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

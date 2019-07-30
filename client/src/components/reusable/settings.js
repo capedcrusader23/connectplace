@@ -45,7 +45,7 @@ class Settings extends Component
                 <Row style={{paddingTop:"2em"}}>
                     
                         <Col m={4} s={12}>
-                            <CardPanel style={{borderRadius:"10px"}} className="z-depth-1 light-green accent-1">
+                            <CardPanel style={{borderRadius:"10px",}} className="z-depth-1 light-green accent-1">
                                 <center>
                                 <Button style={{borderRadius:"10px"}} className="indigo lighten-5 black-text" 
                                     onClick={this.onClick1}>
