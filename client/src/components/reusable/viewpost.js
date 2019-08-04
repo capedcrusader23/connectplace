@@ -18,7 +18,7 @@ class ViewPost extends Component {
     }        
     }
     componentWillMount() {
-        this.props.getdatacomp(this.props.match.params.id);
+        setTimeout(()=>{this.props.getdatacomp(this.props.match.params.id)},3000);
         this.props.getuser(this.props.auth.user.id)
     }
     componentWillReceiveProps(next)

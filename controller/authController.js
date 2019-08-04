@@ -62,22 +62,14 @@ if(check==true)
 }
 else
 {
-    res.status(400).res.json({"error":"wrong password"})
+    res.status(400).json({"error":"wrong password"})
 }
 }
 else
 {
     res.status(400).json({"error":"Email don't Exist"})
 }
-},
-
-changedetails:async(req,res)=>{
-    let data={
-      name:req.body.name==''?req.user.name:req.body.name,
-      email:req.body.email==''?req.user.email:req.body.email,
-      password:req.body.password==''?req.user.password:req.body.password,
-      college:req.body.college==''?req.user.college:req.body.college,
-      mobile:req.body.mobile==''?req.user.mobile:req.body.mobile
-    }
 }
+
+
 }

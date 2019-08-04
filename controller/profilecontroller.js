@@ -5,7 +5,8 @@ const jwt=require('jsonwebtoken')
 const compan=require('../models/comapny')
 const lang=require('../models/language')
 const async=require('async')
-
+const validateform=require('../validation/validateform.js')
+const CommonController=require('./CommonComtroller.js')
 module.exports={
     postquery:(req,res)=>{
         const {error,isValid}=validateQuery(req.body);
@@ -254,12 +255,45 @@ module.exports={
         res.status(200).json(data);
     },
     changedetails:async(req,res)=>{
-        console.log(req.body);
+        
         res.status(200).json(req.body)
     },
     getuser:async(req,res)=>{
         let data=await User.findOne({_id:req.user._id})
         console.log(data)
         res.status(200).json(data);
+    },
+changedetails:async(req,res)=>{
+    
+    const {error,isValid}=validateform(req.body);
+    if(!isValid)
+    {
+        res.status(400).json(error)
     }
+    else
+    {
+        let em=await User.findOne({email:req.body.email})
+        if(em)
+        {
+res.status(400).json({already:"Email Already exits"})
+        }
+        else
+        {
+            let data=await User.findOne({_id:req.user._id});
+            data.name=req.body.name;
+            data.email=req.body.email;
+            data.password=CommonController.hashpassword(req.body.password)
+            data.college=req.body.college;
+            data.currently=req.body.current;
+            data.mobile=req.body.mobile;
+            let d=await data.save();
+            console.log(d)
+            let q=await question.updateMany({'per.person':d._id},{$set:{'per.name':d.name}});
+            console.log(q)
+            res.status(200).json({success:"Saved Changes"})
+        }
+        
+    }
+    
+}
 }

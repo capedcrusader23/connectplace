@@ -6,20 +6,26 @@ const passport=require('passport')
 const cors=require('cors')
 const body=require('body-parser')
 const request=require('request')
-mongoose.connect('mongodb://localhost:27017/jiitplacement',{useNewUrlParser: true})
+const path=require('path')
+mongoose.connect('mongodb://uphaar23:uphaar23@ds135796.mlab.com:35796/jiitplacement',{useNewUrlParser: true})
+//mongoose.connect('mongodb://localhost:27017/jiitplacement',{useNewUrlParser: true})
 
 app.use(body.json())
 app.use(cors())
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport.js')(passport);
-request.post('https://liquidserver.herokuapp.com/hotels',(data)=>{
-    console.log(data)
-})
+
 app.use(route);
+if(process.env.NODE_ENV==='production')
+{
+    app.us(express.static('client/build'));
+    app.get('*',(req,res)=>{
+        res.sendFile(path.resolve(__dirname,'client','buidl','index.html'));
+    })
+}
+const port=process.env.PORT||1111;
 
-
-
-app.listen(1111,()=>{
+app.listen(port,()=>{
     console.log("RUNNING AT 1111")
 })

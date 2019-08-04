@@ -4,6 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Button from 'react-materialize/lib/Button';
 import {changedetails} from '../../action/post'
 import {connect} from 'react-redux'
+import {toast,ToastContainer} from 'react-toastify';
+
 class Settings extends Component
 {
     constructor(props)
@@ -19,6 +21,44 @@ class Settings extends Component
             mobile:''
         };
     }
+    reset()
+    {
+        this.setState({
+            name:'',
+            email:'',
+            password:'',
+            college:'',
+            current:'',
+            mobile:''
+    })
+    }
+    componentWillReceiveProps(nextProps)
+    {
+        console.log(nextProps)
+        if(nextProps.post.don.success)
+        {
+            
+            Object.keys(nextProps.post.don).forEach(key=>{
+				toast.success(nextProps.post.don[key], {position: toast.POSITION.TOP_RIGHT,containerId:'A'});
+            })
+            Object.keys(nextProps.post.don).forEach(key=>{
+            delete nextProps.post.don[key];
+            })
+        
+
+        }
+        else if(nextProps.errors)
+        {
+            Object.keys(nextProps.errors).forEach(key=>{
+				toast.error(nextProps.errors[key], {position: toast.POSITION.TOP_RIGHT,containerId:'A'});
+            })
+            Object.keys(nextProps.errors).forEach(key=>{
+                delete nextProps.errors[key];
+            
+            })
+        }
+        
+    }
     onClick1=()=> {
         console.log("Click1");
         this.setState({section:true});
@@ -28,14 +68,18 @@ class Settings extends Component
         this.setState({section:false});
     }
     submit=(e)=>{
+        
         e.preventDefault();
         this.props.changedetails(this.state)
+     
+        
     }
     change=(e)=>{
         this.setState({
             [e.target.name]:e.target.value
         })
     }
+    
     render()
     {
         
@@ -64,25 +108,25 @@ class Settings extends Component
                                 <hr style={{marginBottom:"1.5em",border:"1px solid black"}}/>
                                 <Row>
                                 <form action="#" method="POST">
-                                    <Col m={4} s={12}>Name:<br/> <TextInput placeholder="Name" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="name" value={this.name} onChange={this.change}/> </Col>
+                                    <Col m={4} s={12}>Name: <br/> <TextInput placeholder="Name" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="name" value={this.name} onChange={this.change}/>        </Col>
                                     
-                                    <Col m={4} s={12}>Email:<br/> <TextInput email placeholder="Email" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="email" value={this.email} onChange={this.change}   /> </Col>
+                                    <Col m={4} s={12}>Email:<br/> <TextInput  placeholder="Email" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="email" value={this.email} onChange={this.change}   />     </Col>
     
-                                    <Col m={4} s={12}>Password:<br/> <TextInput password placeholder="Password" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="password" value={this.password} onChange={this.change} /> </Col>
+                                    <Col m={4} s={12}>Password:<br/> <TextInput password placeholder="Password" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="password" value={this.password} onChange={this.change} />       </Col>
     
                                     
-                                    <Col m={4} s={12}>College:<br/> <TextInput placeholder="College" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="college" onChange={this.change}/> </Col>
+                                    <Col m={4} s={12}>College:<br/> <TextInput placeholder="College" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="college" onChange={this.change}/>        </Col>
                                     
-                                    <Col m={4} s={12}>Current Year:<br/> <TextInput placeholder="Current Year" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="current" onChange={this.change}/> </Col>
+                                    <Col m={4} s={12}>Current Year:<br/> <TextInput placeholder="Current Year" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="current" onChange={this.change}/>      </Col>
     
-                                    <Col m={4} s={12}>Mobile:<br/> <TextInput placeholder="Mobile" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="mobile" onChange={this.change}/> </Col>
+                                    <Col m={4} s={12}>Mobile:<br/> <TextInput placeholder="Mobile" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",borderRadius:"10px"}} name="mobile" onChange={this.change}/>        </Col>
                                         
                                     <center>
                                     <Col m={6} s={6} style={{marginTop:"1.5em"}}>
                                         <input type="reset" value="Clear Fields" style={{backgroundColor:"#ef6c00",padding:"0.3em",borderRadius:"10px"}}/>
                                     </Col>
-                                    <Col m={6} s={6} style={{marginTop:"1.5em"}}>
-                                        <input type="submit" value="Save Changes" style={{backgroundColor:"lime",padding:"0.3em",borderRadius:"10px"}} onClick={this.submit}/>
+                                    <Col>
+                                    <input type="submit" value="Save Changes" style={{backgroundColor:"lime",padding:"0.3em",borderRadius:"10px"}} onClick={this.submit}/>
                                     </Col>
                                     </center>
                                 </form>
@@ -129,7 +173,7 @@ class Settings extends Component
                                             <Col m={6} s={6}> from:
                                                 <input type="date" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",maxWidth:"90%",borderRadius:"10px"}}/>
                                             </Col>
-                                            <Col m={6} s={6}> to: 
+                                            com                           <Col m={6} s={6}> to: 
                                                 <input type="date" style={{backgroundColor:"white",border:"1px solid black",paddingLeft:"1em",maxWidth:"90%",borderRadius:"10px"}}/>
                                             </Col>
                                         </Col>
@@ -153,5 +197,9 @@ class Settings extends Component
         }
     }        
 }
+let mapStateToProps=state=>({
+    errors:state.errors,
+    post:state.post
+})
 
-export default connect(null,{changedetails})(Settings)
+export default connect(mapStateToProps,{changedetails})(Settings)
