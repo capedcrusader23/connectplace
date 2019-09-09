@@ -3,10 +3,13 @@ import axios from 'axios';
 import setAuthToken from '../utils/setAuthtoken.js'
 import jwt_decode from 'jwt-decode'
 export const registeruser=(userData,history)=>dispatch=>{
-    console.log(userData)
-axios.post('http://localhost:1111/auth/register',userData).then((res)=>{
-console.log(res)    
-history.push('/login')}).catch(err=> dispatch({type:GET_ERRORS,payload:err.response.data}))
+  console.log(userData)
+  axios.post('http://localhost:1111/auth/register',userData)
+  .then((res)=>{
+    console.log(res)    
+    history.push('/login')
+  })
+  .catch(err=> dispatch({type:GET_ERRORS,payload:err.response.data}))
 }
 export const loginuser=(userData)=>dispatch=>{
   axios.post('http://localhost:1111/auth/login',userData).then((res)=>{
@@ -27,7 +30,7 @@ export const loginuser=(userData)=>dispatch=>{
     dispatch({
       type:GET_ERRORS,
       payload:err.response.data
-    })
+    })  
   })
 }
 

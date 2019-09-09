@@ -18,29 +18,38 @@ render(){
     const {posts}=this.props.post;
     console.log(posts)
     let postConetent;
-    if(posts==null)
+    if(posts === null)
     {
-       postConetent=<div>No Post</div>
+       postConetent=<div><h4>No Posts </h4></div>
     }
     else
     {
         postConetent=posts.map(post=><Post company={post.company} key={post._id} title={post.ques} author={post.per} tags={post.language} upvotes={post.upvotes} downvotes={post.downvotes} id2={post._id} ></Post>)
     }
     return(
-        <Row style={{overflow:"hidden"}}>
-            <div><br/></div>
+        <div>
+            {/* <Row style={{overflow:"hidden", marginTop:"20px"}}>
             <Col m={3} s={12}>
                 <Popular></Popular>
             </Col>
-            <Col m={6} s={12}>
-                <Scrollbars style={{width:"100%",height:"88vh", }}>
+            <Col m={9} s={12}>
+                <Scrollbars style={{width:"100%",minHeight:"88vh",padding:"40px"}}>
                     {postConetent}
                 </Scrollbars>
             </Col>
-            <Col m={3} s={12}>
-                <Popular></Popular>
-            </Col>
-        </Row>
+            </Row> */}
+            <Row style={{marginTop:40,marginLeft:20}}>
+                <Col m={8} s={12}>
+                    <div style={{columnCount:2}}>
+                        {postConetent}
+                    </div> 
+                </Col>
+                <Col m={3} s={12}>
+                    <Popular></Popular>
+                </Col>
+            </Row>
+        </div>
+        
     )
 }
 }

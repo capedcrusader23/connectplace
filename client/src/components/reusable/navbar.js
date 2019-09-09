@@ -19,11 +19,10 @@ const authLinks=
 (
     <Navbar  alignLinks="right" className="#212121 grey darken-4 cent">
 <NavItem>
-<Link to="/dashboard" > Feeds</Link>
+<Link to="/addPost" >Add Post</Link>
 </NavItem>
-
 <NavItem>
-<Link to="/addpost" > Contribute</Link>
+<Link to="/dashboard" > Feeds</Link>
 </NavItem>
 <NavItem>
 <Link to="/settings" >Settings</Link>
