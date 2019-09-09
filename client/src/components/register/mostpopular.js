@@ -8,12 +8,11 @@ class Popular extends Component{
     constructor()
     {
         super()
-        {
-           this.state={
-               companies:[],
-               lang:[]
-           }     
-        }
+        this.state={
+            companies:[],
+            lang:[]
+        }  
+        
     }
 
     componentWillMount()
@@ -41,9 +40,9 @@ class Popular extends Component{
     {
         console.log(this.state)
     return(
-        <Row>
+        <Row style={{position:"fixed",maxWidth:400}}>
             <Col m={12} s={12}>
-                <Card style={{fontWeight:"500",color:"white",borderRadius:"10px",backgroundImage:"linear-gradient(indigo,#bbdefb)"}}>
+                <Card style={{fontWeight:"500",backgroundColor:"white",marginTop:0}}>
                     Most Popular topics<br></br><br></br>
                     {this.state.lang.map((value, index) => {
                         return  <Link to={`/topic/${value._id}`}><Tag name={value.cat} count={value.count}></Tag></Link>
@@ -51,7 +50,7 @@ class Popular extends Component{
                 </Card>
             </Col>
             <Col m={12} s={12}>
-                <Card style={{fontWeight:"500",color:"white",borderRadius:"10px",backgroundImage:"linear-gradient(indigo,#bbdefb)"}}>
+                <Card style={{fontWeight:"500",backgroundColor:"white"}}>
                     Most popular companies<br></br><br></br>
                     {this.state.companies.map((value, index) => {
                         return <Link to={`/company/${value._id}`}><Tag name={value.cat} count={value.count}></Tag></Link>
