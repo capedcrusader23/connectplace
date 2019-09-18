@@ -1,4 +1,4 @@
-import {SAVE_CHANGES,CURRENT_USER,GET_POSTS,ADD_LIKE,ADD_POST,GET_COMPANY,GET_LANG,GET_LAN,GET_COMP,GET_COMP_DATA} from '../action/types'
+import {SAVE_CHANGES,CURRENT_USER,GET_POSTS,GET_COMPANY,GET_LANG,GET_LAN,GET_COMP,GET_COMP_DATA} from '../action/types'
 const initialState={
     show:false,
     posts:[],
@@ -47,7 +47,7 @@ export default function(state=initialState,action)
         
         case GET_POSTS:
            return{
-               ...state,
+                ...state,
              posts:action.payload
             }
         default:return state

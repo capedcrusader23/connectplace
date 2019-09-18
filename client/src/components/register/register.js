@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {registeruser} from '../../action/auth.js'
 import classnames from 'classnames'
 import {withRouter} from 'react-router-dom'
-import {toast,ToastContainer} from 'react-toastify';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 class Register extends Component{
 	constructor()

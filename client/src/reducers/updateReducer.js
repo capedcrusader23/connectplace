@@ -6,11 +6,9 @@ err:{}
 }
 export default function(state=initialState,action)
 { 
-    console.log(action.type)
     switch(action.type)
     {
     case ADD_LIKE:return{
-        ...state,
         up:action.payload
     }
     case DOWN_LIKE:return{

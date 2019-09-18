@@ -3,7 +3,7 @@ import {Autocomplete,Col,Row,Button,Icon,TextInput,Textarea, Card,Select} from '
 import Tag1 from './tag1.js'
 import {addPost} from '../../action/post'
 import {connect} from 'react-redux'
-import {toast,ToastContainer} from 'react-toastify';
+import {toast} from 'react-toastify';
 import {withRouter} from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 const lang= {"Gus Fring": null,"Saul Goodman": null,"Tuco Salamanca": 'https://placehold.it/250x250'};

@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {addComment} from '../../action/post'
-import { Card, Col, Row, Button, CardPanel } from 'react-materialize'
+import {Button} from 'react-materialize'
 
 
 class CommentForm extends Component{

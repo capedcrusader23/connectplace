@@ -1,10 +1,10 @@
 import React,{Component} from 'react'
-import {CardPanel,Col,Row,TextInput,DatePicker} from 'react-materialize'
+import {CardPanel,Col,Row,TextInput} from 'react-materialize'
 import 'react-toastify/dist/ReactToastify.css';
 import Button from 'react-materialize/lib/Button';
 import {changedetails} from '../../action/post'
 import {connect} from 'react-redux'
-import {toast,ToastContainer} from 'react-toastify';
+import {toast} from 'react-toastify';
 
 class Settings extends Component
 {

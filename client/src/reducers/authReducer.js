@@ -1,4 +1,4 @@
-import {GET_ERRORS,SET_CURRENT_USER} from '../action/types.js'
+import {SET_CURRENT_USER} from '../action/types.js'
 import isEmpty from '../validation/is-empty.js'
 const initialState={
     isAuthenticatetd:false,

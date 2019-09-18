@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Card, Col, Row, Button, CardPanel } from 'react-materialize'
+import {Col, Row, Button, CardPanel } from 'react-materialize'
 import Tag from './tag.js'
-import { getdatacomp, addlike, removelike,getuser} from '../../action/post'
+import { getdatacomp,getuser} from '../../action/post'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'react-loader-spinner'
 import CommentFeed from './commentfeed'
@@ -36,7 +35,7 @@ class ViewPost extends Component {
 
     render() {
      
-        if(this.state.show==false)
+        if(this.state.show===false)
         {
             return (<div className="valign-wrapper center-align">
             <center>

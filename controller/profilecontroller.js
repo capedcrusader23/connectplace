@@ -143,7 +143,6 @@ module.exports={
 
     landing:async(req,res)=>{
         let ques=await question.find().sort({createdAt:-1});
-        console.log(ques)
         res.status(200).json(ques)
     },
     getpost:async(req,res)=>{

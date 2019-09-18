@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import {SAVE_CHANGES,GET_COMP_DATA,ADD_POST,GET_ERRORS,GET_POSTS,ADD_LIKE,GET_COMPANY,GET_LANG,GET_LAN,GET_COMP,DOWN_LIKE,LIKE_ERROR, GET_POST,CURRENT_USER} from './types.js'
+import {SAVE_CHANGES,GET_COMP_DATA,GET_ERRORS,GET_POSTS,ADD_LIKE,GET_COMPANY,GET_LANG,GET_LAN,GET_COMP,DOWN_LIKE,LIKE_ERROR,CURRENT_USER} from './types.js'
 export const addPost=(postData,history)=>dispatch=>{
     axios.post('http://localhost:1111/profile/postquery',postData).then(res=>{
         console.log(history)
@@ -11,7 +11,7 @@ export const getPost=()=>dispatch=>{
     axios.get('http://localhost:1111/profile/landing').then(res=>dispatch({type:GET_POSTS,payload:res.data})).catch(err=>dispatch({type:GET_POSTS,payload:null}))
 }
 export const addlike=id=>dispatch=>{
-    console.log(id)
+    
     axios.post(`http://localhost:1111/profile/postlike/${id}`).then(res=>dispatch({type:ADD_LIKE,payload:res.data})).catch(err=>dispatch({type:LIKE_ERROR,payload:err.response.data}))
 }
 export const removelike=id=>dispatch=>{

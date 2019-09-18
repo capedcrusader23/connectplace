@@ -7,8 +7,8 @@ const cors=require('cors')
 const body=require('body-parser')
 const request=require('request')
 const path=require('path')
-mongoose.connect('mongodb://uphaar23:uphaar23@ds135796.mlab.com:35796/jiitplacement',{useNewUrlParser: true})
-//mongoose.connect('mongodb://localhost:27017/jiitplacement',{useNewUrlParser: true})
+//mongoose.connect('mongodb://uphaar23:uphaar23@ds135796.mlab.com:35796/jiitplacement',{useNewUrlParser: true})
+mongoose.connect('mongodb://localhost:27017/jiitplacement',{useNewUrlParser: true})
 
 app.use(body.json())
 app.use(cors())
@@ -27,5 +27,5 @@ if(process.env.NODE_ENV==='production')
 const port=process.env.PORT||1111;
 
 app.listen(port,()=>{
-    console.log("RUNNING AT 1111")
+    console.log("RUNNING AT 1111") 
 })

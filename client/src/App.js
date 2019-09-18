@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css';
 import Nav from './components/reusable/navbar.js'
 import Landing from './components/reusable/landing.js'
-import Post from './components/reusable/post.js'
 import Login from './components/register/login'
 import ViewPost from './components/reusable/viewpost'
 import Settings from './components/reusable/settings'

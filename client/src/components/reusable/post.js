@@ -3,8 +3,7 @@ import {Card,Col,Row,Button} from 'react-materialize'
 import Tag from './tag.js'
 import {addlike,removelike} from '../../action/post'
 import {connect} from 'react-redux'
-import {BrowserRouter as Router,Link} from 'react-router-dom'
-import {toast,ToastContainer} from 'react-toastify';
+import {Link} from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 
 class Post extends Component
@@ -22,6 +21,8 @@ class Post extends Component
     }
     componentWillMount()
     {
+        console.log(this)
+       
         this.setState({
             upvotes:this.props.upvotes,
             downvotes:this.props.downvotes,
@@ -29,13 +30,12 @@ class Post extends Component
             company:this.props.company
         })
 
-       this.props.tags.map((val,index)=>{
-           console.log(val["name"])
-       })
-        console.log(this.state)
+       
     }
     componentWillReceiveProps(nextProps)
     { 
+        
+        /*
       if(nextProps.post.up)
       {
         this.setState({
@@ -45,6 +45,7 @@ class Post extends Component
           downvotes:nextProps.post.up.downvotes  
         })
       } 
+      */
     }
     doup(id)
     {

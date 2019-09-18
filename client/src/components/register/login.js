@@ -77,26 +77,26 @@ render(){
 			<ToastContainer enableMultiContainer containerId={'A'} position={toast.POSITION.BOTTOM_LEFT} />
 
 	<div style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"5px"}}>
-		<form class="register-form" onSubmit={this.onsubmit}>        
+		<form className="register-form" onSubmit={this.onsubmit}>        
 		
-			<div class="row margin">
-				<div class="input-field col s12">
-					<i class="mdi-communication-email prefix"></i>
+			<div className="row margin">
+				<div className="input-field col s12">
+					<i className="mdi-communication-email prefix"></i>
 					<input id="user_email" type="text" value={this.state.email} name="email" onChange={this.onchange} className={classnames('form-control form-control-lg',{'invalid':errors.email})}/>
-					<label for="user_email" class="center-align">Email</label>
+					<label  className="center-align">Email</label>
 				</div>
 			</div>
-			<div class="row marccgin">
-				<div class="input-field col s12">
-					<i class="mdi-action-lock-outline prefix"></i>
+			<div className="row marccgin">
+				<div className="input-field col s12">
+					<i className="mdi-action-lock-outline prefix"></i>
 					<input id="user_passw" type="password"  value={this.state.password} name="password" onChange={this.onchange} className={classnames('form-control form-control-lg',{'invalid':errors.password})}/>
-					<label for="user_passw">Password</label>
+					<label >Password</label>
 				</div>
 			</div>
 		
-			<div class="row">
-				<div class="input-field col s12">
-					<button  class="btn waves-effect waves-light col s12">Login	</button>
+			<div className="row">
+				<div className="input-field col s12">
+					<button  className="btn waves-effect waves-light col s12">Login	</button>
 					
 				</div>
 				<div className="input-field col s12">
