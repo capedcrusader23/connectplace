@@ -108,110 +108,132 @@ class AddPost extends Component{
     }
     render(){
         return(
-            <Row>
-                <center>
-                    <form>
-                <Col m={2} s={12}></Col>
-                <Col m={8} s={12}>
+            // <Row>
+            //     <center>
+            //         <form>
+            //     <Col m={2} s={12}></Col>
+            //     <Col m={8} s={12}>
             
-                <Card className="z-depth-5" 
-                style={{color:"white",fontSize:'1.5em',borderRadius:"10px",backgroundImage:"linear-gradient(purple,indigo)"}}>
-                <Row>
-                    <div><center style={{fontSize:"1.5em",fontWeight:"500"}}>Write a post</center></div>
-                    <hr style={{width:"75%"}}></hr>
-                    <br></br><br></br>
+            //     <Card className="z-depth-5" 
+            //     style={{color:"white",fontSize:'1.5em',borderRadius:"10px",backgroundImage:"linear-gradient(purple,indigo)"}}>
+            //     <Row>
+            //         <div><center style={{fontSize:"1.5em",fontWeight:"500"}}>Write a post</center></div>
+            //         <hr style={{width:"75%"}}></hr>
+            //         <br></br><br></br>
                     
-                    <Select value={this.state.category} onChange={this.change}>
-                        <option disabled>
-                        Select
-                        </option>
-                        <option value="Interview Exprience">
-                        Interview Experience
-                        </option>
-                        <option value="General Query">
-                        General Query
-                        </option>
-                        </Select>
-                        {/* <br></br>
-                        <div>Category :</div>
-                        <Col s={1}></Col>
-                        <center>
-                        <Select value={this.state.category} onChange={this.change}>
-                            <option disabled>
-                            Select
-                            </option>
-                            <option value="Interview Exprience">
-                            Interview Experience
-                            </option>
-                            <option value="General Query">
-                            General Query
-                            </option>
-                            </Select>
-                        </center> */}
-                    </Row>
+            //         <Select value={this.state.category} onChange={this.change}>
+            //             <option disabled>
+            //             Select
+            //             </option>
+            //             <option value="Interview Exprience">
+            //             Interview Experience
+            //             </option>
+            //             <option value="General Query">
+            //             General Query
+            //             </option>
+            //             </Select>
+            //             {/* <br></br>
+            //             <div>Category :</div>
+            //             <Col s={1}></Col>
+            //             <center>
+            //             <Select value={this.state.category} onChange={this.change}>
+            //                 <option disabled>
+            //                 Select
+            //                 </option>
+            //                 <option value="Interview Exprience">
+            //                 Interview Experience
+            //                 </option>
+            //                 <option value="General Query">
+            //                 General Query
+            //                 </option>
+            //                 </Select>
+            //             </center> */}
+            //         </Row>
                
-                    <Row>
-                        <div>Title :</div>
-                        <Col s={1}></Col>
-                        <TextInput s={10} onChange={this.change2} value={this.ques}/>
-                    </Row>
+            //         <Row>
+            //             <div>Title :</div>
+            //             <Col s={1}></Col>
+            //             <TextInput s={10} onChange={this.change2} value={this.ques}/>
+            //         </Row>
 
-                    <Row>
-                        <Col m={6} s={12}>
-                        <div>Languages :</div>
-                        <Col m={1} s={1}></Col>
+            //         <Row>
+            //             <Col m={6} s={12}>
+            //             <div>Languages :</div>
+            //             <Col m={1} s={1}></Col>
+            //             <Autocomplete onKeyPress={this.enterPressed1.bind(this)}
+            //              m={10} s={10}
+            //              options={{data:lang}}
+            //              placeholder="Type and press Enter" />
+            //             <Col m={1} s={1}></Col>
+            //             {this.state.langtags.map((value, index) => {
+            //                         if(value!=="")
+            //                             return <Tag1 name={value}></Tag1>
+            //                         else
+            //                             return null;
+            //             })}
+            //             </Col>
+            //             <Col m={6} s={12}>
+            //             <div>Company :</div>
+            //             <Col s={1}></Col>
+            //             <Autocomplete onKeyPress={this.enterPressed2.bind(this)}
+            //              s={10} 
+            //              options={{data:comp}}
+            //              placeholder="Type and press Enter" />
+            //             <Col s={1}></Col>
+            //             {this.state.comptags.map((value, index) => {
+            //                         if(value!=="")
+            //                             return <Tag1 name={value}></Tag1>
+            //                         else
+            //                             return null;
+            //             })}
+            //             </Col>
+            //         </Row>
+            //         <Row style={{marginBottom:0}}>
+            //             <div>Description :</div>
+            //             <Col s={1}></Col>
+            //             <Textarea data-length={1000} style={{height:"10em",border:"1px solid white",padding:"1em"}}
+            //               s={10}
+            //               m={10}
+            //               l={10}
+            //               xl={10}
+            //                 value={this.content}
+            //                 onChange={this.change3}
+            //             />
+            //         </Row>
+            //         <Button type="button" waves="light" style={{marginBottom:"10px"}} onClick={this.submit}>
+            //             Submit
+            //             <Icon right>
+            //             send
+            //             </Icon>
+            //         </Button>
+            //     </Card>
+            //     </Col>
+            //     <Col m={3} s={12}></Col>
+            //     </form>
+            //     </center>
+            // </Row>
+            <div style={{backgroundColor:'white',padding:20}}>
+                <form>
+                    <textarea placeholder="Write something here" style={{border:0,minHeight:80,padding:10,resize:"none",fontSize:22}}/>
+                    <div style={{display:"flex",justifyContent:"space-between"}}>
                         <Autocomplete onKeyPress={this.enterPressed1.bind(this)}
-                         m={10} s={10}
-                         options={{data:lang}}
+                          m={10} s={10}
+                          options={{data:lang}}
                          placeholder="Type and press Enter" />
-                        <Col m={1} s={1}></Col>
-                        {this.state.langtags.map((value, index) => {
-                                    if(value!=="")
-                                        return <Tag1 name={value}></Tag1>
-                                    else
-                                        return null;
-                        })}
-                        </Col>
-                        <Col m={6} s={12}>
-                        <div>Company :</div>
-                        <Col s={1}></Col>
                         <Autocomplete onKeyPress={this.enterPressed2.bind(this)}
-                         s={10} 
-                         options={{data:comp}}
-                         placeholder="Type and press Enter" />
-                        <Col s={1}></Col>
-                        {this.state.comptags.map((value, index) => {
-                                    if(value!=="")
-                                        return <Tag1 name={value}></Tag1>
-                                    else
-                                        return null;
-                        })}
-                        </Col>
-                    </Row>
-                    <Row style={{marginBottom:0}}>
-                        <div>Description :</div>
-                        <Col s={1}></Col>
-                        <Textarea data-length={1000} style={{height:"10em",border:"1px solid white",padding:"1em"}}
-                          s={10}
-                          m={10}
-                          l={10}
-                          xl={10}
-                            value={this.content}
-                            onChange={this.change3}
-                        />
-                    </Row>
-                    <Button type="button" waves="light" style={{marginBottom:"10px"}} onClick={this.submit}>
-                        Submit
-                        <Icon right>
-                        send
-                        </Icon>
-                    </Button>
-                </Card>
-                </Col>
-                <Col m={3} s={12}></Col>
+                              s={10} 
+                              options={{data:comp}}
+                              placeholder="Type Company Name" />
+                    </div>
+                         <select style={{display:'block',border:0,marginBottom:10}}>
+                            <option disabled>Select Type </option>
+                            <option>Interview Experience</option>
+                            <option>General Query</option>
+                        </select>
+                    <button style={{width:"100%",padding:10,backgroundColor:"blue",color:"white",border:"0",borderRadius:5}}>Add Post</button>
+                    
                 </form>
-                </center>
-            </Row>
+            </div>
         )
     }
 }

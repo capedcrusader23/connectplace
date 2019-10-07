@@ -1,0 +1,31 @@
+
+.post-card {
+    padding:20px;
+    background-color:white;
+    height:auto;
+    min-height:300px;
+    margin-bottom:10px;
+    break-inside: avoid;
+  }
+  .post-card > h3 {
+    
+    font-size:18px;
+    font-weight:600;
+    color:grey;
+    margin-bottom:20px;
+    margin-top:15px;
+  }
+  .post-card > p {
+    font-size:16px;
+    font-weight:500;
+    opacity:0.6;
+    text-align:justify;
+  }
+  .post-img > img {
+    width:100%;
+    margin-bottom:20px;
+    opacity:1;
+  }
+  .comment {
+    border-radius:10px;
+  }
