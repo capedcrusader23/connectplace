@@ -4,6 +4,7 @@ import Tag from './tag.js'
 import {addlike,removelike} from '../../action/post'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import '../../css/postCard.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 class Post extends Component
@@ -60,51 +61,76 @@ class Post extends Component
         
         return(
             
-            <Row>
-                <center>
+            // <Row>
+            //     <center>
                 
-                <Card
-                // className="light-green accent-1"
-                textClassName="white-text"
-                style={{backgroundImage:"linear-gradient(indigo,#b388ff)"}}
-                >
-                  <div><Link to={`/viewpost/${this.props.id2}`} style={{color:"white",fontSize:"1.7em",fontWeight:"500"}}>  {this.props.title}</Link></div>
-                  <br></br>
-                By - {this.props.author.name}
-                <br/><br/>
-                <div>Languages / Topic</div>
-                {
-                this.state.tags.map((value, index) => {
-                    return <Link to={`/topic/${value.language}`}><Tag name={value.name}></Tag></Link>
-                })}
-                <div>Company</div>
-                {
-                this.state.company.map((value, index) => {
-                    return <Link to={`/company/${value.company}`}><Tag name={value.name}></Tag></Link>
-                })}
-                <br/><br/>
-                <hr style={{width:"80%"}}></hr>
-                <br/>
-                <Row>
-                <Col m={6} s={6}>
-                        <Button floating large className="green" waves="light" icon="thumb_up" onClick={this.doup.bind(this,this.props.id2)}/>
-                  <p>{this.state.upvotes.length}</p>
-                    </Col>
-                    <Col m={6} s={6}><Button
+            //     <Card
+            //     // className="light-green accent-1"
+            //     textClassName="white-text"
+            //     style={{backgroundImage:"linear-gradient(indigo,#b388ff)"}}
+            //     >
+            //       <div><Link to={`/viewpost/${this.props.id2}`} style={{color:"white",fontSize:"1.7em",fontWeight:"500"}}>  {this.props.title}</Link></div>
+            //       <br></br>
+            //     By - {this.props.author.name}
+            //     <br/><br/>
+            //     <div>Languages / Topic</div>
+            //     {
+            //     this.state.tags.map((value, index) => {
+            //         return <Link to={`/topic/${value.language}`}><Tag name={value.name}></Tag></Link>
+            //     })}
+            //     <div>Company</div>
+            //     {
+            //     this.state.company.map((value, index) => {
+            //         return <Link to={`/company/${value.company}`}><Tag name={value.name}></Tag></Link>
+            //     })}
+            //     <br/><br/>
+            //     <hr style={{width:"80%"}}></hr>
+            //     <br/>
+            //     <Row>
+            //     <Col m={6} s={6}>
+            //             <Button floating large className="green" waves="light" icon="thumb_up" onClick={this.doup.bind(this,this.props.id2)}/>
+            //       <p>{this.state.upvotes.length}</p>
+            //         </Col>
+            //         <Col m={6} s={6}><Button
+            //             floating
+            //             large
+            //             className="red"
+            //             waves="light"
+            //             icon="thumb_down"
+            //             onClick={this.dodown.bind(this,this.props.id2)}
+            //         />
+            //       <p>{this.state.downvotes.length}</p>
+            //         </Col>
+            //     </Row>
+            //     </Card>
+                
+            //     </center>
+            // </Row>
+            <div class="post-card">
+            <h3>Lakshya Khera</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis eum consectetur voluptatum, voluptas quam sapiente omnis! Corrupti, quos quasi accusantium doloribus architecto eos fugit explicabo voluptatem expedita, veritatis, tempora exercitationem?</p>
+            <div class="post-img">
+                <img src="https://image.shutterstock.com/z/stock-photo-successful-business-group-working-at-the-office-1428144080.jpg" alt=""/>
+            </div>
+            <div class="userResp">
+                <div class="row mb-4 user-btn">
+                <i class="fas fa-thumbs-up col-2 pt-2"></i>
+                <Button floating large className="green" waves="light" icon="thumb_up" onClick={this.doup.bind(this,this.props.id2)} style={{marginLeft:10}}/>
+                <Button
                         floating
                         large
                         className="red"
                         waves="light"
                         icon="thumb_down"
                         onClick={this.dodown.bind(this,this.props.id2)}
-                    />
-                  <p>{this.state.downvotes.length}</p>
-                    </Col>
-                </Row>
-                </Card>
-                
-                </center>
-            </Row>
+                        style={{marginLeft:10}}
+                />
+                </div>
+                <div>
+                <input type="text" class="form-control comment" placeholder="Write Comment"/>
+                </div>
+            </div>
+            </div>
         )
     }
 }

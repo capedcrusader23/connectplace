@@ -6,7 +6,7 @@ class Add extends Component
     {
         return(
             <div>
-                <ADD></ADD>
+                <ADD/>
                 </div>
         )
     }
