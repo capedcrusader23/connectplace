@@ -1,16 +1,17 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
-import {getPost} from '../../action/post'
+import {addlike,getPost} from '../../action/post'
 import { Row,Col } from 'react-materialize'
 import { Scrollbars } from 'react-custom-scrollbars';
-
+import Loader from 'react-loader-spinner'
+import Post from '../reusable/post.js'
 class Dashboard extends Component
 {
     constructor(props)
     {
         super(props)
         this.state={
-            posts:{},
+            posts:[],
             show:false
         }
     }
@@ -18,41 +19,79 @@ componentWillMount()
 {
 this.props.getPost();
 }
+componentWillReceiveProps(nextProps)
+{
+console.log(nextProps.post.posts)
+  this.setState({
+      show:nextProps.post.show,
+      posts:nextProps.post.posts
+  }) 
+}
 
-render(){
+doup(id)
+{
+    this.props.addlike(id)
+}
 
-    console.log(this.state.show)
-    const {posts}=this.props.post;
-    console.log("!!!!!!!!!!")
+render()
+{
+
+    const posts=this.state.post;
+  
     let postConetent;
-    if(posts==null)
+    if(posts === null)
     {
-       postConetent=<div>No Post</div>
+       postConetent=<div>No Posts </div>
     }
     else
     {
-      postConetent=this.props.postmap
+    let showstate=this.state.show;
+    
+    if(showstate==false&&this.state.length==0)
+    {
+        postConetent=<Loader></Loader>
+    }
+    else
+    { 
+   
+        postConetent=this.state.posts.map((x)=>{
+           return <Post key={x._id} id2={x._id} author={x.per} content={x.content} company={x.company} upvotes={x.upvotes} downvotes={x.downvotes} lang={x.language} addlike={this.doup.bind(this,x._id)}></Post>
+        })
+        
+        
+    }    
+
     }
     return(
-        <Row style={{overflow:"hidden"}}>
-            <div><br/></div>
+        <div>
+            {/* <Row style={{overflow:"hidden", marginTop:"20px"}}>
             <Col m={3} s={12}>
                 
             </Col>
-            <Col m={6} s={12}>
-                <Scrollbars style={{width:"100%",height:"88vh", }}>
-                    
+            <Col m={9} s={12}>
+                <Scrollbars style={{width:"100%",minHeight:"88vh",padding:"40px"}}>
+                    {postConetent}
                 </Scrollbars>
             </Col>
-            <Col m={3} s={12}>
-            
-            </Col>
-        </Row>
+            </Row> */}
+            <Row style={{marginTop:40,marginLeft:20}}>
+                <Col m={8} s={12}>
+                    <div style={{columnCount:2}}>
+                        {postConetent}
+                    </div> 
+                </Col>
+                <Col m={3} s={12}>
+                   
+                </Col>
+            </Row>
+        </div>
+        
     )
 }
 }
 
 const mapStateToProps=state=>({
-    post:state.post
+    post:state.post,
+    update:state.update
 })
-export default connect(mapStateToProps,{getPost})(Dashboard)
+export default connect(mapStateToProps,{addlike,getPost})(Dashboard)

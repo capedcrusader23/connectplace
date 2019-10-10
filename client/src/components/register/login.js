@@ -75,9 +75,9 @@ render(){
     return(
         <div>
 			<ToastContainer enableMultiContainer containerId={'A'} position={toast.POSITION.BOTTOM_LEFT} />
-
-	<div style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"5px"}}>
-		<form className="register-form" onSubmit={this.onsubmit}>        
+	<h1>Login</h1>
+	<div style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"10vh"}}>
+		<form class="register-form" onSubmit={this.onsubmit}>        
 		
 			<div className="row margin">
 				<div className="input-field col s12">

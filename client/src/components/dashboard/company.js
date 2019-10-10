@@ -6,6 +6,7 @@ class Dashboard extends Component
 {
 componentDidMount()
 {
+    
     console.log(this.props.match.params.id)
 this.props.fetchcompsp(this.props.match.params.id);
 }
