@@ -5,6 +5,9 @@ import { Row,Col } from 'react-materialize'
 import { Scrollbars } from 'react-custom-scrollbars';
 import Loader from 'react-loader-spinner'
 import Post from '../reusable/post.js'
+import Popular from '../reusable/mostpopular'
+import  ADD from '../reusable/addpost'
+
 class Dashboard extends Component
 {
     constructor(props)

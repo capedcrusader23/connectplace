@@ -75,28 +75,28 @@ render(){
     return(
         <div>
 			<ToastContainer enableMultiContainer containerId={'A'} position={toast.POSITION.BOTTOM_LEFT} />
-	<h1>Login</h1>
+	<h1 style={{marginLeft:20}}>Login</h1>
 	<div style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"10vh"}}>
 		<form class="register-form" onSubmit={this.onsubmit}>        
 		
-			<div className="row margin">
-				<div className="input-field col s12">
-					<i className="mdi-communication-email prefix"></i>
+			<div class="row margin">
+				<div class="input-field col s12">
+					<i class="mdi-communication-email prefix"></i>
 					<input id="user_email" type="text" value={this.state.email} name="email" onChange={this.onchange} className={classnames('form-control form-control-lg',{'invalid':errors.email})}/>
-					<label  className="center-align">Email</label>
+					<label for="user_email" class="center-align">Email</label>
 				</div>
 			</div>
-			<div className="row marccgin">
-				<div className="input-field col s12">
-					<i className="mdi-action-lock-outline prefix"></i>
+			<div class="row marccgin">
+				<div class="input-field col s12">
+					<i class="mdi-action-lock-outline prefix"></i>
 					<input id="user_passw" type="password"  value={this.state.password} name="password" onChange={this.onchange} className={classnames('form-control form-control-lg',{'invalid':errors.password})}/>
-					<label >Password</label>
+					<label for="user_passw">Password</label>
 				</div>
 			</div>
 		
-			<div className="row">
-				<div className="input-field col s12">
-					<button  className="btn waves-effect waves-light col s12">Login	</button>
+			<div class="row">
+				<div class="input-field col s12">
+					<button  class="btn waves-effect waves-light col s12">Login	</button>
 					
 				</div>
 				<div className="input-field col s12">
@@ -108,9 +108,6 @@ render(){
 </div>
 
         </div>
-
-
-
     )
 }
 }

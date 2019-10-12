@@ -4,6 +4,7 @@ import Tag from './tag.js'
 import {removelike} from '../../action/post'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import '../../css/postCard.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../css/postCard.css';
 class Post extends Component
