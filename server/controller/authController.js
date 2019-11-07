@@ -10,7 +10,7 @@ User.find().then((da)=>{
 
 module.exports={
 register:async(req,res)=>{
-console.log(req.body)
+console.log("!!!!!!",req.body)
 const {error,isValid}=validateRegisterInput(req.body);
 if(!isValid)
 {

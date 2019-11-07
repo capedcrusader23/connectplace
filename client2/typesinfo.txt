@@ -1,0 +1,6 @@
+REGISTER_USER:-Use to register user .
+GET_ERRORS :-Use to get errors from the respective API request
+SET_CURRENT_USER:-use to set current user to catch in reducer and update the states.
+LOGIN WORKFLOW:-
+GET A JWT TOKEN AND STORE IT ON LOCALSTORAGE AND WITH EVERYREQUEST PASS THAT TO CHECK IF IT IS VALID OR NOT.
+LOCALSTORAGE store token as string.
