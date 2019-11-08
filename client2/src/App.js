@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 import Navbar from './components/layout/navbar'
 import Register from './components/authentication/register'
-import Footer from './components/layout/footer'
 import Login from './components/authentication/login'
+import LandingPage from './components/landingPage/Landing'
 import './App.css'
 import {Provider} from 'react-redux'
 import Store from './store'
@@ -24,10 +24,10 @@ class App extends Component {
       <Provider store={Store}>
       <Router>
       <div className="App">
-        <Navbar></Navbar>
-        <Route exact path="/login" component={Login}></Route>
-        <Route exact  path="/register" component={Register}></Route>
-        <Footer></Footer>
+        <Navbar/>
+        <Route exact path="/" component={LandingPage}/>
+        <Route exact path="/login" component={Login}/>
+        <Route exact  path="/register" component={Register}/>
       </div>
       </Router>
       </Provider>
