@@ -20,7 +20,9 @@ export const loginuser=(userData,history)=>dispatch=>{
     setAuthToken(token)
     const decoded=jwt_decode(token);
     dispatch(setCurrentUser(decoded));
-    }).catch(err=>dispatchEvent({type:GET_ERRORS,payload:err.response.data}));
+    }).catch(err=>dispatchEvent({type:GET_ERRORS,payload:err.response.data}))
+    .then(() => history.push('/dashboard'));
+
 }
 
 export const logout=()=>dispatch=>{
