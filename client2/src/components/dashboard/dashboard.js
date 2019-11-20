@@ -1,5 +1,5 @@
 import React ,{Component} from 'react'
-import SideBar from '../sideBar.js/SideBar'
+import SideBar from '../sideBar/SideBar'
 import TrendingCompanies from '../TrendingCompanies/TrendingCompanies'
 import Posts from '../Posts/Posts'
 import PostsWrapper from '../Posts/PostsWrapper'
