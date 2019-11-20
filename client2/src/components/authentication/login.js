@@ -19,6 +19,7 @@ class Login extends Component{
     }
     onSubmit(e){
       e.preventDefault();
+      console.log(this.state)
       this.props.loginuser(this.state)
     }
     componentWillReceiveProps(nextProps){
@@ -66,13 +67,17 @@ class Login extends Component{
           <div>
             <div style={style.wrapper}>
               <h1 style={{fontFamily: 'Montserrat',fontWeight:350,fontSize:50}}>Login</h1>
-              <form>
+              <form
+              onSubmit={this.onSubmit}
+              >
                 <div>
                 <TextField
                   id="standard-basic"
                   label="Email"
                   type="email"
                   fullWidth
+                  name='email'
+                  onChange={this.onChange}
                 />
                 </div>
                 <div>
@@ -82,6 +87,8 @@ class Login extends Component{
                   type="password"
                   margin="normal"
                   fullWidth
+                  name='password'
+                  onChange={this.onChange}
                   />
                 </div>
                 <div style={{marginTop:10}}>

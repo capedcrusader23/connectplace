@@ -4,6 +4,7 @@ import Navbar from './components/layout/navbar'
 import Register from './components/authentication/register'
 import Login from './components/authentication/login'
 import LandingPage from './components/landingPage/Landing'
+import Dashboard from './components/dashboard/dashboard'
 import './App.css'
 import {Provider} from 'react-redux'
 import Store from './store'
@@ -28,6 +29,8 @@ class App extends Component {
         <Route exact path="/" component={LandingPage}/>
         <Route exact path="/login" component={Login}/>
         <Route exact  path="/register" component={Register}/>
+        <Route exact  path="/dashboard" component={Dashboard}/>
+
       </div>
       </Router>
       </Provider>
