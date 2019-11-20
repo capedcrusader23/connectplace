@@ -3,6 +3,8 @@ import FooImage from '../ReusableComponents/FooterImages'
 import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import {loginuser} from '../../actions/authActions'
+import {Link} from 'react-router-dom';
+
 class Login extends Component{
     constructor(){
         super();
@@ -66,11 +68,12 @@ class Login extends Component{
           <div>
             <div style={style.wrapper}>
               <h1 style={{fontFamily: 'Montserrat',fontWeight:350,fontSize:50}}>Login</h1>
-              <form>
+              <form onSubmit={this.onSubmit}>
                 <div>
                 <TextField
                   id="standard-basic"
                   label="Email"
+                  name="email"
                   type="email"
                   fullWidth
                 />
@@ -79,6 +82,7 @@ class Login extends Component{
                 <TextField
                   id="standard-basic"
                   label="Password"
+                  name="password"
                   type="password"
                   margin="normal"
                   fullWidth
@@ -92,7 +96,7 @@ class Login extends Component{
                         />
                 </div>
                 <div>
-                  <p style={style.sideHeading}>Not a member? <a href="/register">Register here</a></p>
+                  <p style={style.sideHeading}>Not a member? <Link to="/register">Register here</Link></p>
                 </div>
               </form>
  

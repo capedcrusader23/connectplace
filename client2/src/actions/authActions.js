@@ -14,13 +14,11 @@ export const setCurrentUser=(decoded)=>{
 export const loginuser=(userData,history)=>dispatch=>{
     axios.post('http://localhost:1111/auth/login',userData).then((res)=>{
     const {token}=res.data;
-     
     localStorage.setItem('jwtToken',token);
-
     setAuthToken(token)
     const decoded=jwt_decode(token);
     dispatch(setCurrentUser(decoded));
-    }).catch(err=>dispatchEvent({type:GET_ERRORS,payload:err.response.data}));
+    }).catch(err=>dispatch({type:GET_ERRORS,payload:err.response.data}));
 }
 
 export const logout=()=>dispatch=>{

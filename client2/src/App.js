@@ -9,7 +9,7 @@ import {Provider} from 'react-redux'
 import Store from './store'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
-import {setCurrentUser} from './actions/authActions'
+import { setCurrentUser} from './actions/authActions'
 
 
 if(localStorage.jwtToken)
@@ -17,10 +17,10 @@ if(localStorage.jwtToken)
   setAuthToken(localStorage.jwtToken);
   let userinfo=jwt_decode(localStorage.jwtToken);
   Store.dispatch(setCurrentUser(userinfo));
-
   const currentTime=Date.now()/1000;
-  if(userinfo.)
+ 
 }
+
 class App extends Component {
   render() {
     return (

@@ -21,8 +21,6 @@ return(
   </nav>
 )
 }
-
-
 }
 
 const mapStateToProps=(state)=>({

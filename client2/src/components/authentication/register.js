@@ -78,18 +78,19 @@ render(){
       <div>
         <div style={style.wrapper}>
           <h1 style={{fontFamily: 'Montserrat',fontWeight:350,fontSize:50}}>Register</h1>
-          <form style={{zIndex:2}}>
+          <form style={{zIndex:2}} onSubmit={this.onSubmit}>
               <div style={style.grid}>
                 <TextField
                     id="standard-basic"
                     label="Email"
                     type="email"
+                    name="email"
                   />
                   <TextField
 
                     id="standard-basic"
                     label="Name"
-                    type="email"
+                    type="text"
                   />
                 <TextField
                     id="standard-basic"
