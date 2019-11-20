@@ -58,7 +58,7 @@ render()
     { 
    
         postConetent=this.state.posts.map((x)=>{
-           return <Post key={x._id} id2={x._id} author={x.per} content={x.content} company={x.company} upvotes={x.upvotes} downvotes={x.downvotes} lang={x.language} addlike={this.doup.bind(this,x._id)}></Post>
+           return <Post id2={x._id} author={x.per} content={x.content} company={x.company} upvotes={x.upvotes} downvotes={x.downvotes} lang={x.language} addlike={this.doup.bind(this,x._id)}></Post>
         })
         
         

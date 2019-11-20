@@ -1,5 +1,5 @@
 import React , {Component} from 'react'
-
+import {Link} from 'react-router-dom'
 class Post extends Component {
     constructor(props) {
         super(props)
@@ -64,20 +64,29 @@ class Post extends Component {
             // You have to toggle betweent to styles 
         }
 
-        
+        let link
+        if(this.props.type=="Interview Exprience")
+        {
+            link=`/viewpost/${this.props.id}`
+        }
+        else
+        {
+            link=`/viewpost2/${this.props.id}`
+        }
+
 
         return (
             <div style={style.CardWrapper}>
-                <h3 style={style.CardWrapperMainHeading}>{this.props.post.authorName}</h3>
-                <h4 style={style.postedOn}>Posted On {this.props.post.postedOn}</h4>
-                <h5 style={style.postType}>{this.props.post.postType}</h5>
+                <h3 style={style.CardWrapperMainHeading}>{this.props.name}</h3>
+                <h4 style={style.postedOn}>Posted On {this.props.created}</h4>
+                <h5 style={style.postType}>{this.props.type}</h5>
                 <p style={style.content}>
-                    {this.props.post.content}
+                    {this.props.content.substring(0.120)}
                 </p>
-                <h5 style={style.company}>Company Name: {this.props.post.companyName}</h5>
+                <h5 style={style.company}>Company Name:</h5>
                 <div style={style.ReadMore}>
                     {/* Link to /post/post_id */}
-                    Read More
+                    <a href={link}>Read More</a>
                 </div>
                 <div>
                     {/* Check whether user_id from jwt token exists in props.post.likes */}

@@ -6,6 +6,9 @@ import Login from './components/authentication/login'
 import LandingPage from './components/landingPage/Landing'
 import Dashboard from './components/dashboard/dashboard'
 import './App.css'
+import InterviewExperience from './components/Posts/InterviewExperience'
+import GeneralQuery from './components/Posts/GeneralQuery'
+
 import {Provider} from 'react-redux'
 import Store from './store'
 import jwt_decode from 'jwt-decode'
@@ -32,10 +35,10 @@ class App extends Component {
         <Route exact path="/" component={LandingPage}/>
         <Route exact path="/login" component={Login}/>
         <Route exact  path="/register" component={Register}/>
-        <Switch>
-        <PrivateRoute exact  path="/dashboard" component={Dashboard}/>
-        </Switch>
-      </div>
+        <Route exact path="/viewpost/:id" component={InterviewExperience}/>
+        <Route exact path="/viewpost2/:id" component={GeneralQuery}/>
+        <Route exact  path="/dashboard" component={Dashboard}/>
+              </div>
       </Router>
       </Provider>
     );

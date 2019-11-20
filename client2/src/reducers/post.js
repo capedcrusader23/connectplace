@@ -14,10 +14,11 @@ export default function(state=initState,action)
             ...state,
             show:false
         }
-        case GET_POSTS:{
+        case GET_POSTS:return{
             ...state,
             posts:action.payload,
             show:true
         }
+        default:return state
     }
 }

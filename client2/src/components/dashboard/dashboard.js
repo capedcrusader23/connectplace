@@ -1,10 +1,11 @@
 import React ,{Component} from 'react'
-import SideBar from '../sideBar.js/SideBar'
+import SideBar from '../sideBar/SideBar'
 import TrendingCompanies from '../TrendingCompanies/TrendingCompanies'
-import Posts from '../Posts/Posts'
+import Posts from '../Posts/Post'
 import PostsWrapper from '../Posts/PostsWrapper'
 import {connect} from 'react-redux'
 import {getPost} from './../../actions/authActions'
+import Loader from 'react-loader-spinner'
 class Dashboard extends Component {
     constructor () {
         // Rereieve posts from here
@@ -48,7 +49,7 @@ class Dashboard extends Component {
                     ]
                 },
                 {
-                    'authorName' :'Author Name',
+                    'authorNMoreame' :'Author Name',
                     postedOn:'24/12/1997',
                     content:'My Interview was went to bad that the employer asked me to pay him for bearing with them. My engineering went wrong, I’m going into designing now. Which college should I apply for ??',
                     postType:'Query',
@@ -122,8 +123,30 @@ class Dashboard extends Component {
             // Fetch this from Backend and send the whole array as props
         }
     }
+    componentWillMount()
+    {
+        
+        this.props.getPost();
+    }
+    componentWillReceiveProps(nextProps)
+    {
+        console.log(nextProps)
+    }
      
     render() {
+
+        let postContent;
+        if(this.props.post.show==false&&this.props.post.posts.length==0)
+        {
+            postContent=<Loader></Loader>
+        }
+        else
+        {
+            postContent=this.props.post.posts.map((x)=>{
+                return <Posts key={x._id} id={x._id} name={x.per.name} content={x.content} company={x.company} type={x.category} created={x.createdAt} upvotes={x.upvotes} ></Posts>
+            })
+        }
+
         const style = {
             DashboardWrapper :{
                 marginLeft:'20vw',
@@ -138,9 +161,8 @@ class Dashboard extends Component {
             <div>
                 <SideBar/>
                 <div style={style.DashboardWrapper}>
-
                     <PostsWrapper>
-                        <Posts posts={this.state.posts}/>
+                      {postContent}
                     </PostsWrapper>
                 </div>
                 <TrendingCompanies/>
@@ -149,4 +171,8 @@ class Dashboard extends Component {
     }
     
 }
-export default Dashboard
+const mapStatetoProps=(state)=>({
+    auth:state.auth,
+    post:state.post
+})
+export default connect(mapStatetoProps,{getPost})(Dashboard)
