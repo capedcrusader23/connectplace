@@ -21,9 +21,18 @@ class Login extends Component{
     }
     onSubmit(e){
       e.preventDefault();
+      console.log(this.state)
       this.props.loginuser(this.state)
     }
+    componentDidMount()
+    {
+      if(this.props.isAuthenticated==true)
+      {
+        this.props.history.push('/dashboard');
+      }
+    }
     componentWillReceiveProps(nextProps){
+      console.log(nextProps.auth)
       if(nextProps.auth.isAuthenticated){
         console.log(nextProps.auth)
         this.props.history.push('/dashboard')
@@ -76,6 +85,8 @@ class Login extends Component{
                   name="email"
                   type="email"
                   fullWidth
+                  name='email'
+                  onChange={this.onChange}
                 />
                 </div>
                 <div>
@@ -86,6 +97,8 @@ class Login extends Component{
                   type="password"
                   margin="normal"
                   fullWidth
+                  name='password'
+                  onChange={this.onChange}
                   />
                 </div>
                 <div style={{marginTop:10}}>

@@ -28,6 +28,7 @@ class Register extends Component{
     }
     onSubmit(e){
       e.preventDefault();
+      console.log(this.state)
       this.props.registeruser(this.state,this.props.history)  
       }
     onChange(e){
@@ -35,6 +36,13 @@ class Register extends Component{
         [e.target.name]:e.target.value
       })
     }   
+    componentDidMount()
+    {
+      if(this.props.isAuthenticated==true)
+      {
+        this.props.history.push('/dashboard');
+      }
+    }
 render(){
 
     const style = {
@@ -85,22 +93,28 @@ render(){
                     label="Email"
                     type="email"
                     name="email"
+                    onChange={this.onChange}
                   />
                   <TextField
 
                     id="standard-basic"
                     label="Name"
+                    name="name"
                     type="text"
+                    onChange={this.onChange}
                   />
                 <TextField
                     id="standard-basic"
                     label="Password"
                     type="password"
+                    name="password"
+                    onChange={this.onChange}
                   />
                   <TextField
                     id="standard-basic"
                     label="Retype Password"
                     type="password"
+                    onChange={this.onChange}
                   />
                 <div style={{gridColumn:'1/3'}}>
                         <FormControl
@@ -120,6 +134,7 @@ render(){
                     id="standard-basic"
                     label="Job Designation"
                     type="text"
+                    
                   />
                   <TextField
                     id="standard-basic"

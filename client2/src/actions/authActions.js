@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER,GET_ERRORS} from './types'
+import {SET_CURRENT_USER,GET_ERRORS,REQUEST_POST,GET_POSTS} from './types'
 import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken'
 import jwt_decode from 'jwt-decode'
@@ -25,5 +25,15 @@ export const logout=()=>dispatch=>{
     localStorage.removeItem('jwtToken');
     setAuthToken(false);
     dispatch(setCurrentUser({}));
+}
+function requestpost()
+{
+    return {
+        type:REQUEST_POST
+    }
+}
+export const getPost=()=>dispatch=>{
+    dispatch(requestpost())
+    axios.get('http://localhost:1111/profile/landing').then(res=>dispatch({type:GET_POSTS,payload:res.data})).catch(err=>dispatch({type:GET_POSTS,payload:null}))
 }
 

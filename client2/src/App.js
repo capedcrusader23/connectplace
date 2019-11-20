@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router,Route} from 'react-router-dom';
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import Navbar from './components/layout/navbar'
 import Register from './components/authentication/register'
 import Login from './components/authentication/login'
 import LandingPage from './components/landingPage/Landing'
+import Dashboard from './components/dashboard/dashboard'
 import './App.css'
 import {Provider} from 'react-redux'
 import Store from './store'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
 import { setCurrentUser} from './actions/authActions'
-
+import PrivateRoute from './components/common/privateRoute'
 
 if(localStorage.jwtToken)
 {
@@ -31,6 +32,9 @@ class App extends Component {
         <Route exact path="/" component={LandingPage}/>
         <Route exact path="/login" component={Login}/>
         <Route exact  path="/register" component={Register}/>
+        <Switch>
+        <PrivateRoute exact  path="/dashboard" component={Dashboard}/>
+        </Switch>
       </div>
       </Router>
       </Provider>

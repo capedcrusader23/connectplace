@@ -6,7 +6,10 @@ import {logout} from '../../actions/authActions'
 class Navbar extends Component
 {
   style = {
-    backgroundColor:"#202150"
+    backgroundColor:"#202150",
+    position:'fixed',
+    width:'100%',
+    zIndex:3
   }
   logout(e)
   {
