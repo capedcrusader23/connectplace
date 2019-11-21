@@ -72,58 +72,53 @@ module.exports={
         },function(err){
             if(err)
             {
-                console.log("SOME HTING WAS WRONG")
+                res.status(404).json({error:"SOMETHING IS WRONG"})
             }
             else
             {
-                async.each(req.body.topic,function(tag,callback){
-                    compan.findOne({cat:tag}).then((da,err)=>{
-                        
-                        console.log(err)
-                        if(err)
+
+            compan.findOne({cat:tag}).then((da,err)=>{
+                if(err)
+                {
+                    res.status(404).json({error:"SOMETHING IS WRONG"})
+                }
+                else
+                {
+                        if(da)
                         {
-                            callback(err)
-                            return err;
+                            da.count++;
+                            da.save().then(()=>
+                            {
+                                let opt={
+                                    company:da,
+                                    name:da.name
+                                }
+                                query.language.push(opt);
+                                query.save().then(()=>{
+                                    res.status(200).json({success:"DONE WITH THE POST"})
+                                })
+                            })
                         }
                         else
                         {
-                            if(da)
-                            {
-                                da.count++;
-                                da.save().then(()=>{
-                                    let opt={
-                                        company:da,
-                                        name:da.cat,
-                                    }
-                                    query.company.push(opt)
-                                    callback()
+                            let comp=new compan();
+                            comp.cat=tag;
+                            comp.count=1;
+                            comp.save().then(()=>{
+                                let opt={
+                                    company:da,
+                                    name:da.name
+                                }
+                                query.language.push(opt);
+                                query.save().then(()=>{
+                                    res.status(200).json({success:"DONE WITH THE POST"});
                                 })
-                            }
-                            else
-                            {   
-                                let q=new compan()
-                                q.cat=tag
-                                q.count=1;
-                                q.save().then((qe)=>{
-                                    let opt={
-                                        company:qe,
-                                        name:qe.cat
-                                    }
-                                    query.company.push(opt)
-                                    callback()
-                                })
-        
-                            }
+                            })
                         }
-                    })
-                },function(err)
-                {
-                    query.save().then((das)=>{
-                       console.log(das)  
-                    }).then((q)=>{
-                        res.status(200).json("DONE WITH POST");
-                    })
-                })
+
+                }
+            })    
+               
         
             }
         })

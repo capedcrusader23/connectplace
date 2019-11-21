@@ -15,13 +15,6 @@ const question=new schema({
             refs:'users'
         }}
     ],
-    downvotes:[
-        {
-        user:{
-            type:schema.Types.ObjectId,
-            refs:'users'
-        }}
-    ],
     topic:{
         type:Object
     },
@@ -34,7 +27,7 @@ const question=new schema({
             type:String
         }
     }],
-    company:[{
+    company:{
        company:{
         type:schema.Types.ObjectId,
         refs:'companys'
@@ -42,7 +35,7 @@ const question=new schema({
        name:{
            type:String
        }
-    }],
+    },
     ques:{
         type:String
     },

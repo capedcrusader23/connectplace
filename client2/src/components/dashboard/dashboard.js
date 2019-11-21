@@ -10,122 +10,10 @@ class Dashboard extends Component {
     constructor () {
         // Rereieve posts from here
         super()
-        this.state = {
-            posts:[
-                {
-                    'authorName' :'Author Name',
-                    postedOn:'24/12/1997',
-                    content:'My Interview was went to bad that the employer asked me to pay him for bearing with them. My engineering went wrong, I’m going into designing now. Which college should I apply for ??',
-                    postType:'Query',
-                    companyName:'Amazon',
-                    postId:1,
-                    likes:[
-                        '12','34','34'
-                        // This is user ids so u can whether current user liked the post or not yet :D
-                    ]
-                },
-                {
-                    'authorName' :'Author Name',
-                    postedOn:'24/12/1997',
-                    content:'My Interview was went to bad that the employer asked me to pay him for bearing with them. My engineering went wrong, I’m going into designing now. Which college should I apply for ??',
-                    postType:'Query',
-                    companyName:'Amazon',
-                    postId:1,
-                    likes:[
-                        '12','34','34'
-                        // This is user ids so u can whether current user liked the post or not yet :D
-                    ]
-                },
-                {
-                    'authorName' :'Author Name',
-                    postedOn:'24/12/1997',
-                    content:'My Interview was went to bad that the employer asked me to pay him for bearing with them. My engineering went wrong, I’m going into designing now. Which college should I apply for ??',
-                    postType:'Query',
-                    companyName:'Amazon',
-                    postId:1,
-                    likes:[
-                        '12','34','34'
-                        // This is user ids so u can whether current user liked the post or not yet :D
-                    ]
-                },
-                {
-                    'authorNMoreame' :'Author Name',
-                    postedOn:'24/12/1997',
-                    content:'My Interview was went to bad that the employer asked me to pay him for bearing with them. My engineering went wrong, I’m going into designing now. Which college should I apply for ??',
-                    postType:'Query',
-                    companyName:'Amazon',
-                    postId:1,
-                    likes:[
-                        '12','34','34'
-                        // This is user ids so u can whether current user liked the post or not yet :D
-                    ]
-                },
-                {
-                    'authorName' :'Author Name',
-                    postedOn:'24/12/1997',
-                    content:'My Interview was went to bad that the employer asked me to pay him for bearing with them. My engineering went wrong, I’m going into designing now. Which college should I apply for ??',
-                    postType:'Query',
-                    companyName:'Amazon',
-                    postId:1,
-                    likes:[
-                        '12','34','34'
-                        // This is user ids so u can whether current user liked the post or not yet :D
-                    ]
-                },
-                {
-                    'authorName' :'Author Name',
-                    postedOn:'24/12/1997',
-                    content:'My Interview was went to bad that the employer asked me to pay him for bearing with them. My engineering went wrong, I’m going into designing now. Which college should I apply for ??',
-                    postType:'Query',
-                    companyName:'Amazon',
-                    postId:1,
-                    likes:[
-                        '12','34','34'
-                        // This is user ids so u can whether current user liked the post or not yet :D
-                    ]
-                },
-                {
-                    'authorName' :'Author Name',
-                    postedOn:'24/12/1997',
-                    content:'My Interview was went to bad that the employer asked me to pay him for bearing with them. My engineering went wrong, I’m going into designing now. Which college should I apply for ??',
-                    postType:'Query',
-                    companyName:'Amazon',
-                    postId:1,
-                    likes:[
-                        '12','34','34'
-                        // This is user ids so u can whether current user liked the post or not yet :D
-                    ]
-                },
-                {
-                    'authorName' :'Author Name',
-                    postedOn:'24/12/1997',
-                    content:'My Interview was went to bad that the employer asked me to pay him for bearing with them. My engineering went wrong, I’m going into designing now. Which college should I apply for ??',
-                    postType:'Query',
-                    companyName:'Amazon',
-                    postId:1,
-                    likes:[
-                        '12','34','34'
-                        // This is user ids so u can whether current user liked the post or not yet :D
-                    ]
-                },{
-                    'authorName' :'Author Name',
-                    postedOn:'24/12/1997',
-                    content:'My Interview was went to bad that the employer asked me to pay him for bearing with them. My engineering went wrong, I’m going into designing now. Which college should I apply for ??',
-                    postType:'Query',
-                    companyName:'Amazon',
-                    postId:1,
-                    likes:[
-                        '12','34','34'
-                        // This is user ids so u can whether current user liked the post or not yet :D
-                    ]
-                }
-            ]
-            // Fetch this from Backend and send the whole array as props
-        }
+        
     }
     componentWillMount()
     {
-        
         this.props.getPost();
     }
     componentWillReceiveProps(nextProps)
@@ -134,7 +22,6 @@ class Dashboard extends Component {
     }
      
     render() {
-
         let postContent;
         if(this.props.post.show==false&&this.props.post.posts.length==0)
         {
