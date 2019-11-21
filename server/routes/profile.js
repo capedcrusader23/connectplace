@@ -18,4 +18,5 @@ route.get('/getc/:id',passport.authenticate('jwt',{session:false}),profilecontro
 route.get('/getdatacomp/:id',passport.authenticate('jwt',{session:false}),profilecontroller.getdatacomp)
 route.post('/changedetails',passport.authenticate('jwt',{session:false}),profilecontroller.changedetails)
 route.get('/getuser/:id',passport.authenticate('jwt',{session:false}),profilecontroller.getuser)
+
 module.exports=route;

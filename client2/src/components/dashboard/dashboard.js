@@ -6,6 +6,7 @@ import PostsWrapper from '../Posts/PostsWrapper'
 import {connect} from 'react-redux'
 import {getPost} from './../../actions/authActions'
 import Loader from 'react-loader-spinner'
+import AddPost from '../Posts/addPost'
 class Dashboard extends Component {
     constructor () {
         // Rereieve posts from here
@@ -136,9 +137,10 @@ class Dashboard extends Component {
     render() {
 
         let postContent;
-        if(this.props.post.show==false&&this.props.post.posts.length==0)
+        if(this.props.post.posts.length==0)
         {
-            postContent=<Loader></Loader>
+            postContent= (<h3> No Content </h3>)
+
         }
         else
         {
@@ -161,6 +163,7 @@ class Dashboard extends Component {
             <div>
                 <SideBar/>
                 <div style={style.DashboardWrapper}>
+                    <AddPost/>
                     <PostsWrapper>
                       {postContent}
                     </PostsWrapper>
