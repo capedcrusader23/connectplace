@@ -14,6 +14,7 @@ module.exports={
         {
         return res.status(400).json(error);
         }
+        
         let query=new question();
         query.category=req.body.category;
         query.content=req.body.content;
@@ -31,7 +32,6 @@ module.exports={
         query.per=opts
         async.each(req.body.language,function(tag,callback){
             lang.findOne({cat:tag}).then((da,err)=>{
-                
                 console.log(err)
                 if(err)
                 {

@@ -38,7 +38,7 @@ const SideBar = (props) => {
             <div >
                 <ul style={style.sideNav}>
                     {/* Add links yo respective pages */}
-                    <li>Dashboard</li>
+                    <li><a href='/dashboard'>Dashboard</a></li>
                     <li>Settings</li>
                     <li><a href="#" > Log Out</a></li>
                 </ul>

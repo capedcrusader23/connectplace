@@ -5,6 +5,7 @@ import Register from './components/authentication/register'
 import Login from './components/authentication/login'
 import LandingPage from './components/landingPage/Landing'
 import Dashboard from './components/dashboard/dashboard'
+import AddPost from './components/Posts/addPost'
 import './App.css'
 import InterviewExperience from './components/Posts/InterviewExperience'
 import GeneralQuery from './components/Posts/GeneralQuery'
@@ -38,7 +39,7 @@ class App extends Component {
         <Route exact path="/viewpost/:id" component={InterviewExperience}/>
         <Route exact path="/viewpost2/:id" component={GeneralQuery}/>
         <Route exact  path="/dashboard" component={Dashboard}/>
-              </div>
+        </div>
       </Router>
       </Provider>
     );
