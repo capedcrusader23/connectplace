@@ -37,3 +37,7 @@ export const getPost=()=>dispatch=>{
     axios.get('http://localhost:1111/profile/landing').then(res=>dispatch({type:GET_POSTS,payload:res.data})).catch(err=>dispatch({type:GET_POSTS,payload:null}))
 }
 
+export const addpost=(userData,history)=>dispatch=>{
+    axios.post('http://localhost:1111/profile/postquery',userData).then(res=>history.push('/dashboard')).catch(err=>dispatch({type:GET_ERRORS,payload:err.response.data}))
+}
+
