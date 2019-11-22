@@ -3,3 +3,5 @@ export const GET_ERRORS="GET_ERRORS";
 export const SET_CURRENT_USER="SET_CURRENT_USER"
 export const GET_POSTS="GET_POSTS";
 export const REQUEST_POST="REQUEST_POST";
+export const GET_COMPANY="GET_COMPANY";
+export const GET_POST="GET_POST";

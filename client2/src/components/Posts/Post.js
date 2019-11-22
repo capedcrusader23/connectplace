@@ -65,7 +65,7 @@ class Post extends Component {
         }
 
         let link
-        if(this.props.type=="Interview Exprience")
+        if(this.props.type=="IE")
         {
             link=`/viewpost/${this.props.id}`
         }
@@ -83,7 +83,7 @@ class Post extends Component {
                 <p style={style.content}>
                     {this.props.content.substring(0.120)}
                 </p>
-                <h5 style={style.company}>Company Name:</h5>
+                <h5 style={style.company}>Company Name:{this.props.company.name}</h5>
                 <div style={style.ReadMore}>
                     {/* Link to /post/post_id */}
                     <a href={link}>Read More</a>

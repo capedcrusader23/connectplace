@@ -26,12 +26,13 @@ class Dashboard extends Component {
         let postContent;
         if(this.props.post.posts.length==0)
         {
-            postContent= (<h3> No Content </h3>)
+            postContent= (<Loader></Loader>)
 
         }
         else
         {
             postContent=this.props.post.posts.map((x)=>{
+                console.log(x)
                 return <Posts key={x._id} id={x._id} name={x.per.name} content={x.content} company={x.company} type={x.category} created={x.createdAt} upvotes={x.upvotes} ></Posts>
             })
         }

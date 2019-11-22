@@ -24,12 +24,13 @@ module.exports={
         query.createdAt=Date.now();
         query.comments=[]
         query.language=[]
-        query.company=[]
+        query.company={}
         let opts={
             person:req.user._id,
             name:req.user.name
         }
         query.per=opts
+        console.log("!!!!!")
         async.each(req.body.language,function(tag,callback){
             lang.findOne({cat:tag}).then((da,err)=>{
                 console.log(err)
@@ -72,15 +73,18 @@ module.exports={
         },function(err){
             if(err)
             {
-                res.status(404).json({error:"SOMETHING IS WRONG"})
+                res.status(400).json({error:"SOMETHING IS WRONG"})
             }
             else
             {
 
-            compan.findOne({cat:tag}).then((da,err)=>{
+
+
+
+            compan.findOne({cat:req.body.company}).then((da,err)=>{
                 if(err)
                 {
-                    res.status(404).json({error:"SOMETHING IS WRONG"})
+                    res.status(400).json({error:"SOMETHING IS WRONG"})
                 }
                 else
                 {
@@ -91,9 +95,9 @@ module.exports={
                             {
                                 let opt={
                                     company:da,
-                                    name:da.name
+                                    name:da.cat
                                 }
-                                query.language.push(opt);
+                                query.company=opt;
                                 query.save().then(()=>{
                                     res.status(200).json({success:"DONE WITH THE POST"})
                                 })
@@ -102,14 +106,14 @@ module.exports={
                         else
                         {
                             let comp=new compan();
-                            comp.cat=tag;
+                            comp.cat=req.body.company;
                             comp.count=1;
-                            comp.save().then(()=>{
+                            comp.save().then((da)=>{
                                 let opt={
                                     company:da,
-                                    name:da.name
+                                    name:da.cat
                                 }
-                                query.language.push(opt);
+                                query.company=opt;
                                 query.save().then(()=>{
                                     res.status(200).json({success:"DONE WITH THE POST"});
                                 })
@@ -143,13 +147,14 @@ module.exports={
     },
     getpost:async(req,res)=>{
         let ques=await question.findOne({_id:req.params.id});
+        console.log(ques)
         if(ques)
         {
             res.status(200).json(ques)
         }
         else
         {
-            res.status(400)
+            res.status(400).json({error:"NOT WITH POST"})
         }
     },
     upvote:async(req,res)=>{
