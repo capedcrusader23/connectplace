@@ -21,7 +21,7 @@ class AddPost extends Component {
     onChange(e){
         this.setState({[e.target.name]:e.target.value})
       }
-      onSubmit(e){
+    onSubmit(e){
           console.log(this.props.auth)
         e.preventDefault();
         let user={
@@ -107,26 +107,6 @@ class AddPost extends Component {
                 />  
             <textarea style={style.content} placeholder='Tell about your interview experience' />
             <br/> 
-            <div className='row p-3' style={{fontSize:11}}>
-                <TextField
-                className='col-6 pr-1'
-                id="standard-basic"
-                label="Company Name"
-                type="email"
-                fullWidth
-                name='email'
-                onChange={this.onChange}
-                /> 
-                <TextField
-                className='col-6'
-                id="standard-basic"
-                label="Job Description"
-                name="email"
-                type="email"
-                fullWidth
-                onChange={this.onChange}
-                />  
-            </div> 
             <div style={style.SubmitDiv}>
                 <input type='Submit' value='Add Post' className='btn btn-primary'/>
             </div> 
