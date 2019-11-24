@@ -22,8 +22,8 @@ class AddPost extends Component {
     onChange(e){
         this.setState({[e.target.name]:e.target.value})
       }
-      onSubmit(e){
-      console.log(this.props);
+    onSubmit(e){
+        console.log(this.props.auth)
         e.preventDefault();
         this.props.addpost(this.state);
     }
@@ -105,6 +105,7 @@ class AddPost extends Component {
                 />  
             <textarea style={style.content} placeholder='Tell about your interview experience' />
             <br/> 
+
             <div className='row p-3' style={{fontSize:11}}>
                 <TextField
                 className='col-6 pr-1'

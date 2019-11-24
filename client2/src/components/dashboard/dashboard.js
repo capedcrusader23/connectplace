@@ -24,6 +24,7 @@ class Dashboard extends Component {
      
     render() {
         let postContent;
+        console.log(this.props.post)
         if(this.props.post.posts.length==0)
         {
             postContent= (<Loader></Loader>)
