@@ -2,43 +2,32 @@ import React , {Component} from 'react'
 import Profile from '../../assets/profile1.png'
 import SideBar from '../sideBar/SideBar'
 import Comment from './Comment'
+import {getpost} from '../../actions/authActions'
+import {connect} from 'react-redux'
+import Loader from 'react-loader-spinner'
 class InterviewExperience extends Component {
-    constructor() {
-        super()
-        // Fetch data using post_id and postType
-        this.state = {
-            authorName:'Username',
-            company:'Amazon',
-            jobDescription:'SDE',
-            content:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus pellentesque eu tincidunt tortor aliquam. Dictum at tempor commodo ullamcorper a lacus vestibulum. Amet facilisis magna etiam tempor orci eu lobortis. Mi bibendum neque egestas congue quisque. Pellentesque elit ullamcorper dignissim cras. ',
-            liked:[],
-            comments:[
-                {
-                    commentId:'1',userName:'Username',comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus pellentesque eu tincidunt tortor aliquam. Dictum at tempor commodo ullamcorper a lacus vestibulum. Amet facilisis magna etiam tempor orci eu lobortis. Mi bibendum neque egestas congue quisque. Pellentesque elit ullamcorper dignissim cras. ',
-                },
-                {
-                    commentId:'2',userName:'Username',comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus pellentesque eu tincidunt tortor aliquam. Dictum at tempor commodo ullamcorper a lacus vestibulum. Amet facilisis magna etiam tempor orci eu lobortis. Mi bibendum neque egestas congue quisque. Pellentesque elit ullamcorper dignissim cras. ',
-                },
-                {
-                    commentId:'3',userName:'Username',comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus pellentesque eu tincidunt tortor aliquam. Dictum at tempor commodo ullamcorper a lacus vestibulum. Amet facilisis magna etiam tempor orci eu lobortis. Mi bibendum neque egestas congue quisque. Pellentesque elit ullamcorper dignissim cras. ',
-                },
-                {
-                    commentId:'4',userName:'Username',comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus pellentesque eu tincidunt tortor aliquam. Dictum at tempor commodo ullamcorper a lacus vestibulum. Amet facilisis magna etiam tempor orci eu lobortis. Mi bibendum neque egestas congue quisque. Pellentesque elit ullamcorper dignissim cras. ',
-                },
-                {
-                    commentId:'5',userName:'Username',comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus pellentesque eu tincidunt tortor aliquam. Dictum at tempor commodo ullamcorper a lacus vestibulum. Amet facilisis magna etiam tempor orci eu lobortis. Mi bibendum neque egestas congue quisque. Pellentesque elit ullamcorper dignissim cras. ',
-                }
-
-            ]
+    constructor(props) {
+        super(props)
+        this.state={
+            show:false,
+            post:{}
         }
     }
-
+    componentWillReceiveProps(nextProps)
+    {
+        console.log(nextProps)
+        this.setState({
+            show:nextProps.post.show,
+            post:nextProps.post.post
+        })
+    }
+    componentWillMount()
+    {
+        this.props.getpost(this.props.match.params.id)
+    }
 
     render() {
 
-        let comments = this.state.comments.map(comment => {
-            return <Comment authorName={comment.userName} comment={comment.comment}/>
-        })
 
         let style = {
             Wrapper : {
@@ -71,43 +60,58 @@ class InterviewExperience extends Component {
             }
         }
 
-
-        return (
-            <div>
-                <SideBar/>
-                <div style={style.Wrapper}>
-                    <h1>Interview Experience @ {this.state.company}</h1>
-                    <hr/>
-                    <p>
-                        <b>Job Description:</b> {this.state.jobDescription}
-                    </p>
-                    <div>
-                        <img src={Profile} style={{height:80,width:80,marginRight:4}}/>
-                        {this.state.authorName}
-                    </div>
-                    <br/>
-                    <p style={style.content}>
-                        {this.state.content}
-                    </p>
-                    <div>
-                        <i style={style.respBtnActive} className="fa fa-thumbs-up"></i> Upvote
-                        <i style={style.respBtnInActive} className="fa fa-share"></i> Share
-                    
-                    </div>
-                    <br/>
-                    <form className="row" style={style.userRsp}>
-                            <input type="text" className="col-9 mr-2" name="comment" id="comment"/>
-                            <input type="Submit" className="col-2 ml-1" value="Add Comment"/>
-                    </form>
-                    <br/>
-                    <div>
-                        <h4>Comments</h4>
+        if(this.state.show==false)
+        {
+            return(
+                <div>
+                    <Loader></Loader>
+                </div>
+            )
+        }
+        else
+        {
+            return (
+                <div>
+                    <SideBar/>
+                    <div style={style.Wrapper}>
+                        <h1>Interview Experience @ {this.state.post.company.name}</h1>
+                        <hr/>
+                        <p>
+                            <b>Job Description:</b>
+                        </p>
+                        <div>
+                            <img src={Profile} style={{height:80,width:80,marginRight:4}}/>
+                           
+                        </div>
                         <br/>
-                        {comments}
+                        <p style={style.content}>
+                        {this.state.post.content}
+                        </p>
+                        <div>
+                            <i style={style.respBtnActive} className="fa fa-thumbs-up"></i> Upvote
+                            <i style={style.respBtnInActive} className="fa fa-share"></i> Share
+                        
+                        </div>
+                        <br/>
+                        <form className="row" style={style.userRsp}>
+                                <input type="text" className="col-9 mr-2" name="comment" id="comment"/>
+                                <input type="Submit" className="col-2 ml-1" value="Add Comment"/>
+                        </form>
+                        <br/>
+                        <div>
+                            <h4>Comments</h4>
+                            <br/>
+                           
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        
     }
 }
-export default InterviewExperience
+
+const mapStateToProps=(state)=>({
+    post:state.singlepost
+})
+export default connect(mapStateToProps,{getpost})(InterviewExperience)

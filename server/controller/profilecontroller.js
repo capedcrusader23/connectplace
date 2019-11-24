@@ -24,12 +24,13 @@ module.exports={
         query.createdAt=Date.now();
         query.comments=[]
         query.language=[]
-        query.company=[]
+        query.company={}
         let opts={
             person:req.user._id,
             name:req.user.name
         }
         query.per=opts
+        console.log("!!!!!")
         async.each(req.body.language,function(tag,callback){
             lang.findOne({cat:tag}).then((da,err)=>{
                 console.log(err)
@@ -72,58 +73,56 @@ module.exports={
         },function(err){
             if(err)
             {
-                console.log("SOME HTING WAS WRONG")
+                res.status(400).json({error:"SOMETHING IS WRONG"})
             }
             else
             {
-                async.each(req.body.topic,function(tag,callback){
-                    compan.findOne({cat:tag}).then((da,err)=>{
-                        
-                        console.log(err)
-                        if(err)
+
+
+
+
+            compan.findOne({cat:req.body.company}).then((da,err)=>{
+                if(err)
+                {
+                    res.status(400).json({error:"SOMETHING IS WRONG"})
+                }
+                else
+                {
+                        if(da)
                         {
-                            callback(err)
-                            return err;
+                            da.count++;
+                            da.save().then(()=>
+                            {
+                                let opt={
+                                    company:da,
+                                    name:da.cat
+                                }
+                                query.company=opt;
+                                query.save().then(()=>{
+                                    res.status(200).json({success:"DONE WITH THE POST"})
+                                })
+                            })
                         }
                         else
                         {
-                            if(da)
-                            {
-                                da.count++;
-                                da.save().then(()=>{
-                                    let opt={
-                                        company:da,
-                                        name:da.cat,
-                                    }
-                                    query.company.push(opt)
-                                    callback()
+                            let comp=new compan();
+                            comp.cat=req.body.company;
+                            comp.count=1;
+                            comp.save().then((da)=>{
+                                let opt={
+                                    company:da,
+                                    name:da.cat
+                                }
+                                query.company=opt;
+                                query.save().then(()=>{
+                                    res.status(200).json({success:"DONE WITH THE POST"});
                                 })
-                            }
-                            else
-                            {   
-                                let q=new compan()
-                                q.cat=tag
-                                q.count=1;
-                                q.save().then((qe)=>{
-                                    let opt={
-                                        company:qe,
-                                        name:qe.cat
-                                    }
-                                    query.company.push(opt)
-                                    callback()
-                                })
-        
-                            }
+                            })
                         }
-                    })
-                },function(err)
-                {
-                    query.save().then((das)=>{
-                       console.log(das)  
-                    }).then((q)=>{
-                        res.status(200).json("DONE WITH POST");
-                    })
-                })
+
+                }
+            })    
+               
         
             }
         })
@@ -148,13 +147,14 @@ module.exports={
     },
     getpost:async(req,res)=>{
         let ques=await question.findOne({_id:req.params.id});
+        console.log(ques)
         if(ques)
         {
             res.status(200).json(ques)
         }
         else
         {
-            res.status(400)
+            res.status(400).json({error:"NOT WITH POST"})
         }
     },
     upvote:async(req,res)=>{

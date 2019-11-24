@@ -19,8 +19,8 @@ class Navbar extends Component
 render()
 {
 return(
-  <nav class="navbar navbar-dark" style={this.style}>
-  <a class="navbar-brand" href="#">Connect Place</a>
+  <nav className="navbar navbar-dark" style={this.style}>
+  <a className="navbar-brand" href="#">Connect Place</a>
   </nav>
 )
 }

@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER,GET_ERRORS,REQUEST_POST,GET_POSTS} from './types'
+import {SET_CURRENT_USER,GET_ERRORS,REQUEST_POST,GET_POSTS,GET_COMPANY,GET_POST} from './types'
 import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken'
 import jwt_decode from 'jwt-decode'
@@ -38,6 +38,15 @@ export const getPost=()=>dispatch=>{
 }
 
 export const addpost=(userData,history)=>dispatch=>{
+    console.log("HERE");
     axios.post('http://localhost:1111/profile/postquery',userData).then(res=>history.push('/dashboard')).catch(err=>dispatch({type:GET_ERRORS,payload:err.response.data}))
 }
 
+
+export const getcomp=()=>dispatch=>{
+    axios.get('http://localhost:1111/profile/getcomp').then(res=>dispatch({type:GET_COMPANY,payload:res.data})).catch(err=>dispatch({type:GET_ERRORS,payload:err.response.data}))
+}
+export  const getpost=(id)=>dispatch=>{
+    console.log("!!!")
+    axios.post(`http://localhost:1111/profile/post/${id}`).then(res=>dispatch({type:GET_POST,payload:res.data})).catch(err=>dispatch({type:GET_ERRORS,payload:err.response.data}))
+}

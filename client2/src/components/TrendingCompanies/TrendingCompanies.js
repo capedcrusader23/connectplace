@@ -1,20 +1,31 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {getcomp} from '../../actions/authActions'
+import Loader from 'react-loader-spinner'
 
 class TrendingCompanies extends Component {
     constructor() {
         super()
-        this.state= {
-            TrendingCompanies :[
-                'Amazon','Groafers','Buy hatke','Infosys','Wipro'
-            ]
-            // Please fetch from backend
-        }
+        
     }
-    // fetch trending companies from db
+    componentWillMount()
+    {
+        this.props.getcomp();
+    }
     render() {
-        let trendingCompanies = this.state.TrendingCompanies.map(company => {
-        return (<span class="badge badge-pill badge-primary">{company}</span>)
-        })
+        let trendingCompanies 
+
+        if(this.props.post.company.length==0)
+        {
+            trendingCompanies=<Loader></Loader>
+        }
+        else
+        {
+            trendingCompanies=this.props.post.company.map((x)=>{
+                return <span class="badge badge-pill badge-primary">{x.cat}</span>
+            })
+        }
+
 
         let style = {
             cardWrapper :{
@@ -47,4 +58,8 @@ class TrendingCompanies extends Component {
         )
     }
 }
-export default TrendingCompanies
+
+const mapStatetoProps=(state)=>({
+    post:state.post
+})
+export default connect(mapStatetoProps,{getcomp})(TrendingCompanies)

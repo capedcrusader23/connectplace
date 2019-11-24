@@ -8,9 +8,10 @@ class AddPost extends Component {
         this.state= {
             content:'',
             category:'',
-            companyName: '',
+            company: '',
             ques:'',
-            jobDescription:''
+            job:'',
+            language:[]
         }
         this.onChange=this.onChange.bind(this);
         this.onSubmit=this.onSubmit.bind(this);
@@ -22,13 +23,9 @@ class AddPost extends Component {
         this.setState({[e.target.name]:e.target.value})
       }
     onSubmit(e){
-          console.log(this.props.auth)
+        console.log(this.props.auth)
         e.preventDefault();
-        let user={
-            ...this.state,
-            ...this.props.auth.user.id
-        }
-        this.props.addpost(user);
+        this.props.addpost(this.state);
     }
 
     render() {
@@ -58,6 +55,7 @@ class AddPost extends Component {
                 justifyContent:'flex-end'
             },
             Opt : {
+
                 fontSize:16
             },
 
@@ -65,9 +63,49 @@ class AddPost extends Component {
         }
 
         const IEform = (
-            <form>
+            <form onSubmit={this.onSubmit}>
+            <textarea style={style.content} placeholder='Tell about your interview experience' name="content" onChange={this.onChange}/>
+            <br/> 
+            <div className='row p-3' style={{fontSize:11}}>
+                <TextField
+                className='col-6 pr-1'
+                id="standard-basic"
+                label="Company Name"
+                type="text"
+                fullWidth
+                name='company'
+                onChange={this.onChange}
+                /> 
+                <TextField
+                className='col-6'
+                id="standard-basic"
+                label="Title"
+                name="ques"
+                type="text"
+                fullWidth
+                onChange={this.onChange}
+                />  
+            </div> 
+            <div style={style.SubmitDiv}>
+                <input type='Submit' value='Add Post'  name="IE" className='btn btn-primary'/>
+            </div>  
+            </form>
+        )
+
+        const GQForm = (
+            <form onSubmit={this.onSubmit}>
+            <TextField
+                id="standard-basic"
+                label="Title goes here"
+                className="mb-4"
+                name="title"
+                type="text"
+                fullWidth
+                onChange={this.onChange}
+                />  
             <textarea style={style.content} placeholder='Tell about your interview experience' />
             <br/> 
+
             <div className='row p-3' style={{fontSize:11}}>
                 <TextField
                 className='col-6 pr-1'
@@ -81,32 +119,13 @@ class AddPost extends Component {
                 <TextField
                 className='col-6'
                 id="standard-basic"
-                label="Job Description"
-                name="email"
-                type="email"
-                fullWidth
-                onChange={this.onChange}
-                />  
-            </div> 
-            <div style={style.SubmitDiv}>
-                <input type='Submit' value='Add Post'  className='btn btn-primary'/>
-            </div>  
-            </form>
-        )
-
-        const GQForm = (
-            <form>
-            <TextField
-                id="standard-basic"
-                label="Title goes here"
-                className="mb-4"
-                name="title"
+                label="Title"
+                name="que"
                 type="text"
                 fullWidth
                 onChange={this.onChange}
                 />  
-            <textarea style={style.content} placeholder='Tell about your interview experience' />
-            <br/> 
+            </div> 
             <div style={style.SubmitDiv}>
                 <input type='Submit' value='Add Post' className='btn btn-primary'/>
             </div> 
@@ -115,49 +134,14 @@ class AddPost extends Component {
 
 
         return (
-            // <div >
-            //     <div style={style.Wrapper}>
-            //         <h1>Add Post</h1>
-            //         <hr/>
-            //         <form
-            //         onSubmit={this.onSubmit}
-            //         >
-            //             <label>Add Content</label>
-            //             <br/>
-            //             <textarea
-            //             name='content'
-            //             onChange={this.onChange}
-            //             />
-            //             <br/>
-            //             <label>Select Post Type</label>
-            //             <br/>
-            //             <select name='category' onChange={this.onChange}>
-            //                 <option value='Query'>General Query</option>
-            //                 <option value='Interview Experience'>Interview Experience</option>
-            //             </select>
-            //             <br/>
-            //             <label>Add Company Name</label>
-            //             <br/>
-            //             <input type='text' name='companyName' onChange = {this.onChange}/>
-            //             <br/>
-            //             <br/>
-                       
-            //             <input type='submit' value='Add Post'/>
-            //         </form>
-            //     </div>
-            // </div>
-
-
-
-
             <div>
                 <div style={style.AddPost} data-toggle="modal" data-target="#exampleModal">
                 Write an Experience or Ask a Question.
                 </div>
                 {/* Modal */}
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content p-1">
+                <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content p-1">
                         <div style={style.Opt}>
                             <a href="#" className='mr-3' style={{color: (this.state.category === 'IE')  ? 'red' : ''}} onClick={() =>  this.togglePostCategory('IE')}>Interview Experience</a>
                             <a href="#" onClick={() =>  this.togglePostCategory('GQ')} style={{color: (this.state.category === 'GQ')  ? 'red' : ''}}>Query</a>
